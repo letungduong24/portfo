@@ -1,0 +1,174 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+  DEMO
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  name      String?
+  role      UserRole @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id          Int      @id @default(autoincrement())
+  headlineVi    String?
+  headlineEn    String?
+  subheadlineVi String?
+  subheadlineEn String?
+  desc1Vi       String?
+  desc1En       String?
+  desc2Vi       String?
+  desc2En       String?
+  fullNameVi    String?
+  fullNameEn    String?
+  birthDate   DateTime?
+  educationVi   String?
+  educationEn   String?
+  github      String?
+  facebook    String?
+  linkedin    String?
+  email       String?
+  skillGroups SkillGroup[]
+  
+  // Footer Configuration
+  footerTitleVi        String?
+  footerTitleEn        String?
+
+  copyrightNameVi      String?
+  copyrightNameEn      String?
+  footerUseProfileContact Boolean @default(true)
+  footerEmail          String?
+  footerGithub         String?
+  footerFacebook       String?
+  footerLinkedin       String?
+
+  // Navbar Configuration
+  navbarNameVi         String? @default("Dương")
+  navbarNameEn         String? @default("Duong")
+  navHireMeVi          String?
+  navHireMeEn          String?
+  showHireMe           Boolean @default(true)
+  
+  // Hire Me Configuration
+  hireMeEmail          String? // Email to receive notifications
+
+  // Page Settings
+  pageTitle            String? @default("Portfolio")
+  pageDescription      String? @default("My Portfolio")
+  pageIcon             String?
+  avatarUrl            String?
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SkillGroup {
+  id          Int      @id @default(autoincrement())
+  nameVi      String
+  nameEn      String
+  icon        String
+  order       Int      @default(0)
+  profileId   Int?
+  profile     Profile? @relation(fields: [profileId], references: [id])
+  skills      Skill[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Skill {
+  id            Int         @id @default(autoincrement())
+  nameVi        String
+  nameEn        String
+  descriptionVi String?
+  descriptionEn String?
+  order         Int         @default(0)
+  skillGroupId  Int
+  skillGroup    SkillGroup  @relation(fields: [skillGroupId], references: [id], onDelete: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  slug        String   @unique
+  titleVi     String
+  titleEn     String
+  descriptionVi String
+  descriptionEn String
+  overviewVi  String
+  overviewEn  String
+  problemVi   String[]
+  problemEn   String[]
+  solutionVi  String[]
+  solutionEn  String[]
+  featuresVi  String[]
+  featuresEn  String[]
+  learnedVi   String[]
+  learnedEn   String[]
+
+  // Complex JSON Fields
+  techStack   Json     // Array of { name, reasonVi, reasonEn }
+  challenges  Json     // Array of { problemVi, problemEn, solutionVi, solutionEn, reasonVi, reasonEn }
+  
+  // JSON for Links/Credentials
+  links       Json     // { demo, repo } - removed api field
+  demoCredentials Json? // { email, password, noteVi, noteEn }
+  
+  architectureVi String?
+  architectureEn String?
+
+  thumbnailUrl String?
+  tags        String[]
+  roleVi      String
+  roleEn      String
+  startDate   DateTime?
+  endDate     DateTime?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Blog {
+  id          Int      @id @default(autoincrement())
+  titleVi     String
+  titleEn     String?
+  slug        String   @unique
+  contentVi   String   @db.Text
+  contentEn   String?  @db.Text
+  thumbnail   String?
+  tags        String[]
+  isPublished Boolean  @default(false)
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model HireMeMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

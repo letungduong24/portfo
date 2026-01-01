@@ -1,0 +1,490 @@
+{
+    "errors": {
+        "USER_EMAIL_EXISTS": "Email đã tồn tại",
+        "INVALID_PASSWORD": "Mật khẩu không đúng",
+        "UNKNOWN_ERROR": "Đã xảy ra lỗi không xác định",
+        "Internal Server Error": "Lỗi máy chủ nội bộ"
+    },
+    "HomePage": {
+        "title": "Trang chủ",
+        "Hero": {
+            "view_projects": "Xem dự án",
+            "headline": "Chào, tôi là Dương",
+            "subheadline": "Lập trình viên Web",
+            "desc1": "Lập trình viên Web với nền tảng thiết kế vững chắc.",
+            "desc2": "Đam mê tạo ra trải nghiệm người dùng liền mạch với sự kết hợp giữa sáng tạo và chức năng."
+        },
+        "About": {
+            "title": "Họ và tên",
+            "dob": "Ngày sinh",
+            "education": "Học vấn"
+        },
+        "Skills": {
+            "title": "Kỹ năng",
+            "subtitle": "Các công nghệ tôi sử dụng"
+        },
+        "Projects": {
+            "title": "Dự án gần đây",
+            "subtitle": "Một số dự án nổi bật tôi đã thực hiện",
+            "view_all": "Xem tất cả dự án",
+            "no_projects": "Chưa có dự án nào",
+            "check_back": "Vui lòng quay lại sau.",
+            "search_placeholder": "Tìm kiếm dự án...",
+            "all_projects": "Tất cả dự án",
+            "all_projects_desc": "Danh sách đầy đủ các dự án của tôi"
+        },
+        "RecentBlogs": {
+            "title": "Bài viết mới nhất",
+            "subtitle": "Chia sẻ kiến thức và kinh nghiệm",
+            "view_all": "Xem tất cả bài viết"
+        },
+        "ProjectDetail": {
+            "role": "Vai trò",
+            "duration": "Thời gian",
+            "demo": "Demo",
+            "code": "Mã nguồn",
+            "live_preview": "Xem demo",
+            "view_code": "Xem mã nguồn",
+            "problem": "Vấn đề",
+            "solution": "Giải pháp",
+            "main_features": "Tính năng chính",
+            "tech_stack": "Công nghệ sử dụng",
+            "architecture": "Kiến trúc",
+            "challenges_decisions": "Thách thức & Quyết định",
+            "challenge": "Thách thức",
+            "reason": "Lý do",
+            "what_i_learned": "Bài học kinh nghiệm",
+            "demo_account": "Tài khoản demo",
+            "email": "Email",
+            "password": "Mật khẩu",
+            "note": "Ghi chú"
+        }
+    },
+    "BlogsPage": {
+        "title": "Blog & Bài viết",
+        "description": "Chia sẻ suy nghĩ và kinh nghiệm về phát triển phần mềm.",
+        "no_posts": "Chưa có bài viết nào. Hãy quay lại sau!",
+        "no_posts_desc": "Vui lòng quay lại sau.",
+        "no_thumbnail": "Không có hình thu nhỏ",
+        "min_read": "{minutes} phút đọc",
+        "search_placeholder": "Tìm kiếm bài viết..."
+    },
+    "Common": {
+        "loading": "Đang tải...",
+        "error": "Đã xảy ra lỗi",
+        "success": "Thành công",
+        "cancel": "Hủy",
+        "save": "Lưu",
+        "delete": "Xóa",
+        "edit": "Sửa",
+        "create": "Tạo mới",
+        "demo_user_error": "Đây là tài khoản demo, không có quyền thực hiện thao tác này",
+        "throttle_error": "Bạn đã thực hiện quá nhiều lần, vui lòng thử lại sau"
+    },
+    "Navbar": {
+        "home": "Trang chủ",
+        "projects": "Dự án",
+        "blogs": "Bài viết",
+        "contact": "Liên hệ",
+        "hire_me": {
+            "title": "Làm việc với tôi",
+            "name": "Tên của bạn",
+            "email": "Email của bạn",
+            "message": "Tin nhắn của bạn",
+            "send": "Gửi",
+            "success_message": "Đã gửi tin nhắn thành công! Tôi sẽ phản hồi sớm.",
+            "error_message": "Có lỗi xảy ra. Vui lòng thử lại sau.",
+            "rate_limit_error": "Bạn đã gửi quá nhiều tin nhắn. Vui lòng đợi 1 phút trước khi gửi lại.",
+            "validation": {
+                "name_required": "Vui lòng nhập tên",
+                "name_min": "Tên phải có ít nhất 2 ký tự",
+                "email_invalid": "Email không hợp lệ",
+                "message_required": "Vui lòng nhập tin nhắn",
+                "message_min": "Tin nhắn phải có ít nhất 10 ký tự",
+                "message_max": "Tin nhắn không được quá 1000 ký tự"
+            }
+        },
+        "language": "Ngôn ngữ",
+        "logo_fallback": "Dương"
+    },
+    "Footer": {
+        "rights": "All rights reserved.",
+        "portfolio": "Portfolio Dương"
+    },
+    "Profile": {
+        "save": "Lưu thay đổi",
+        "saving": "Đang lưu...",
+        "add_tech": "Thêm công nghệ",
+        "upload_icon": "Đường dẫn Icon",
+        "title": "Cài đặt Hồ sơ",
+        "subtitle": "Quản lý thông tin công khai và nội dung trang chủ.",
+        "sections": {
+            "hero": {
+                "title": "Phần Giới thiệu (Hero)",
+                "description": "Tùy chỉnh phần giới thiệu chính trên trang chủ.",
+                "headline": "Tiêu đề chính (H1)",
+                "subheadline": "Tiêu đề phụ (H2)",
+                "desc1": "Đoạn mô tả 1",
+                "desc2": "Đoạn mô tả 2"
+            },
+            "personal": {
+                "title": "Thông tin Cá nhân",
+                "description": "Chi tiết cá nhân hiển thị trong phần \"About\".",
+                "fullname": "Họ và tên",
+                "birthdate": "Ngày sinh",
+                "education": "Học vấn",
+                "avatar": "Ảnh đại diện (Avatar)"
+            },
+            "social": {
+                "title": "Liên kết Mạng xã hội",
+                "description": "Liên kết đến các hồ sơ mạng xã hội của bạn.",
+                "github": "GitHub URL",
+                "facebook": "Facebook URL",
+                "linkedin": "LinkedIn URL",
+                "email": "Email / Khác"
+            },
+            "skills": {
+                "title": "Kỹ năng",
+                "description": "Quản lý các kỹ năng của bạn.",
+                "name": "Tên",
+                "desc": "Mô tả",
+                "empty": "Chưa có kỹ năng nào.",
+                "add_group": "Thêm nhóm kỹ năng",
+                "edit_group": "Sửa nhóm kỹ năng",
+                "add_skill": "Thêm kỹ năng",
+                "edit_skill": "Sửa kỹ năng",
+                "view_skills": "Xem kỹ năng",
+                "group_name": "Tên nhóm",
+                "icon_url": "Đường dẫn Icon"
+            },
+            "footer": {
+                "title": "Quản lý Footer",
+                "description": "Tùy chỉnh nội dung footer và liên hệ.",
+                "footer_title": "Tiêu đề Footer",
+                "copyright_name": "Tên bản quyền",
+                "use_profile_contact": "Sử dụng thông tin liên hệ từ Hồ sơ",
+                "contact_email": "Email liên hệ",
+                "github": "Github URL",
+                "facebook": "Facebook URL",
+                "linkedin": "LinkedIn URL",
+                "contact_info_shared": "Thông tin liên hệ (Dùng chung)"
+            },
+            "navbar": {
+                "title": "Quản lý Navbar",
+                "description": "Tùy chỉnh tên hiển thị trên thanh điều hướng và nút Thuê tôi.",
+                "navbar_name": "Tên Navbar",
+                "navbar_name_desc": "Tên thương hiệu hiển thị ở bên trái thanh điều hướng.",
+                "hire_me_button": "Nút Thuê tôi",
+                "hire_me_desc": "Cấu hình hiển thị và hành động của nút Thuê tôi.",
+                "show_hire_me": "Hiển thị nút 'Thuê tôi'",
+                "showHireMe": "Hiển thị nút 'Thuê tôi'"
+            },
+            "page_settings": {
+                "title": "Cài đặt Trang",
+                "description": "Cấu hình tiêu đề trang, mô tả và biểu tượng.",
+                "general_title": "Cài đặt Chung",
+                "general_desc": "Thiết lập tiêu đề tab trình duyệt, mô tả SEO và icon.",
+                "page_title": "Tiêu đề Trang",
+                "page_title_help": "Hiển thị trên tab trình duyệt.",
+                "page_description": "Mô tả Trang",
+                "page_description_help": "Sử dụng cho SEO và chia sẻ mạng xã hội.",
+                "page_icon": "Icon Trang (Favicon)",
+                "page_icon_help": "Tải lên ảnh vuông (ví dụ: .png, .ico)."
+            }
+        },
+        "toast": {
+            "update_success": "Cập nhật hồ sơ thành công",
+            "uploading_image": "Đang tải ảnh lên...",
+            "image_uploaded": "Đã tải ảnh lên",
+            "tech_added": "Đã thêm công nghệ",
+            "tech_updated": "Đã cập nhật công nghệ",
+            "tech_deleted": "Đã xóa công nghệ",
+            "deleting": "Đang xóa...",
+            "updating": "Đang cập nhật...",
+            "adding": "Đang thêm..."
+        }
+    },
+    "Sidebar": {
+        "dashboard": "Bảng điều khiển",
+        "profile": "Hồ sơ",
+        "settings": "Cài đặt",
+        "application": "Ứng dụng",
+        "logout": "Đăng xuất",
+        "home": "Trang chủ",
+        "projects": "Dự án",
+        "footer_management": "Quản lý Footer",
+        "navbar_management": "Quản lý Navbar"
+    },
+    "Login": {
+        "title": "Đăng nhập Admin",
+        "description": "Nhập thông tin đăng nhập để truy cập vào bảng điều khiển.",
+        "email_label": "Email",
+        "email_placeholder": "admin@example.com",
+        "password_label": "Mật khẩu",
+        "password_placeholder": "••••••",
+        "submit_button": "Đăng nhập",
+        "logging_in": "Đang đăng nhập...",
+        "login_failed": "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.",
+        "validation": {
+            "email_invalid": "Email không hợp lệ.",
+            "password_min": "Mật khẩu phải có ít nhất 6 ký tự."
+        }
+    },
+    "Admin": {
+        "Dashboard": {
+            "title": "Bảng điều khiển",
+            "total_projects": "Tổng số dự án",
+            "total_blogs": "Tổng số bài viết",
+            "total_views": "Tổng lượt xem",
+            "hire_me_messages": "Tin nhắn liên hệ",
+            "from_last_month": "trong tháng qua"
+        },
+        "Blogs": {
+            "title": "Quản lý Blog",
+            "description": "Tạo và quản lý các bài viết blog của bạn.",
+            "create_button": "Tạo Blog",
+            "all_blogs_title": "Tất cả Blog",
+            "all_blogs_desc": "Danh sách tất cả các blog bao gồm cả bản nháp và đã xuất bản.",
+            "table_headers": {
+                "title": "Tiêu đề (VI)",
+                "slug": "Slug",
+                "status": "Trạng thái",
+                "views": "Lượt xem",
+                "created_at": "Ngày tạo",
+                "actions": "Hành động"
+            },
+            "empty_state": "Chưa có blog nào. Hãy tạo bài viết đầu tiên của bạn!",
+            "empty_state_desc": "Bắt đầu tạo bài viết blog đầu tiên của bạn",
+            "status": {
+                "published": "Đã xuất bản",
+                "draft": "Bản nháp"
+            },
+            "delete_dialog": {
+                "title": "Bạn có chắc chắn không?",
+                "description": "Hành động này không thể hoàn tác. Bài viết sẽ bị xóa vĩnh viễn.",
+                "cancel": "Hủy",
+                "delete": "Xóa"
+            },
+            "toast": {
+                "delete_success": "Xóa blog thành công",
+                "delete_error": "Xóa blog thất bại"
+            },
+            "search_placeholder": "Tìm kiếm blog..."
+        },
+        "BlogEditor": {
+            "edit_title": "Chỉnh sửa Blog",
+            "create_title": "Tạo Blog Mới",
+            "back_button": "Quay lại",
+            "save_button": "Lưu Blog",
+            "publish_button": "Xuất bản",
+            "updating": "Đang cập nhật...",
+            "creating": "Đang tạo...",
+            "labels": {
+                "title_vi": "Tiêu đề (VI)",
+                "title_en": "Tiêu đề (EN)",
+                "slug": "Slug",
+                "slug_desc": "Định danh duy nhất trên URL.",
+                "thumbnail": "Ảnh đại diện",
+                "tags": "Thẻ (Tags)",
+                "tags_placeholder": "Nhập thẻ...",
+                "add_tag": "Thêm thẻ",
+                "published": "Xuất bản",
+                "content_vi": "Nội dung (VI)",
+                "content_en": "Nội dung (EN)",
+                "upload_image": "Tải ảnh lên",
+                "remove_image": "Xóa ảnh"
+            },
+            "toast": {
+                "create_success": "Tạo bài viết thành công",
+                "update_success": "Cập nhật bài viết thành công",
+                "create_error": "Lỗi khi tạo bài viết",
+                "update_error": "Lỗi khi cập nhật bài viết",
+                "upload_error": "Lỗi khi tải ảnh lên",
+                "slug_exists_error": "Slug đã tồn tại, vui lòng chọn slug khác"
+            },
+            "validation": {
+                "title_required": "Vui lòng nhập tiêu đề",
+                "slug_required": "Slug là bắt buộc",
+                "content_required": "Nội dung là bắt buộc"
+            },
+            "ai": {
+                "generate_button": "Tạo bằng AI",
+                "generating": "Đang tạo...",
+                "translate_from_vi": "Dịch từ tiếng Việt (AI)",
+                "translating": "Đang dịch...",
+                "translate_from_en": "Dịch từ tiếng Anh (AI)",
+                "dialog_title": "Tạo bài viết với AI",
+                "dialog_desc": "Mô tả bài viết bạn muốn tạo. AI sẽ tạo nội dung cho cả tiếng Việt và tiếng Anh.",
+                "prompt_placeholder": "Ví dụ: Viết một bài về cách sử dụng React Hooks...",
+                "success": "Đã tạo nội dung!",
+                "error": "Lỗi khi tạo nội dung",
+                "overwrite_alert_title": "Ghi đè nội dung?",
+                "overwrite_alert_desc": "Nội dung hiện tại sẽ bị ghi đè bởi bản dịch mới. Bạn có chắc chắn muốn tiếp tục?",
+                "confirm": "Có, ghi đè",
+                "cancel": "Hủy"
+            }
+        },
+        "Projects": {
+            "title": "Dự án",
+            "description": "Quản lý các dự án trong portfolio.",
+            "add_project": "Thêm dự án",
+            "no_projects_title": "Chưa có dự án nào",
+            "no_projects_desc": "Bạn chưa tạo bất kỳ dự án nào. Bắt đầu bằng cách thêm một dự án mới.",
+            "delete_confirm_title": "Bạn có chắc không?",
+            "delete_confirm_desc": "Hành động này không thể hoàn tác. Dự án \"{name}\" sẽ bị xóa vĩnh viễn.",
+            "cancel": "Hủy",
+            "delete": "Xóa",
+            "search_placeholder": "Tìm kiếm dự án..."
+        },
+        "ComposeProject": {
+            "edit_title": "Chỉnh sửa dự án",
+            "create_title": "Tạo dự án mới",
+            "tabs": {
+                "basic": "Thông tin cơ bản",
+                "details": "Chi tiết",
+                "arrays": "Nội dung danh sách",
+                "complex": "Dữ liệu phức tạp"
+            },
+            "buttons": {
+                "cancel": "Hủy",
+                "create": "Tạo dự án",
+                "update": "Cập nhật dự án",
+                "add_item": "Thêm mục",
+                "add_tech": "Thêm công nghệ",
+                "add_challenge": "Thêm thách thức"
+            },
+            "labels": {
+                "slug": "Slug (ID duy nhất)",
+                "title_vi": "Tiêu đề (VI)",
+                "title_en": "Tiêu đề (EN)",
+                "desc_vi": "Mô tả (VI)",
+                "desc_en": "Mô tả (EN)",
+                "tags": "Thẻ (Tags)",
+                "links_credentials": "Liên kết & Thông tin",
+                "demo_url": "Link Demo",
+                "repo_url": "Link Repo",
+                "api_url": "Link API",
+                "demo_email": "Email Demo",
+                "demo_password": "Mật khẩu Demo",
+                "note_vi": "Ghi chú (VI)",
+                "note_en": "Ghi chú (EN)",
+                "detailed_info": "Thông tin chi tiết",
+                "role_vi": "Vai trò (VI)",
+                "role_en": "Vai trò (EN)",
+                "start_date": "Ngày bắt đầu",
+                "end_date": "Ngày kết thúc",
+                "overview_vi": "Tổng quan (VI)",
+                "overview_en": "Tổng quan (EN)",
+                "architecture_vi": "Kiến trúc (VI)",
+                "architecture_en": "Kiến trúc (EN)",
+                "problem_vi": "Vấn đề (VI)",
+                "problem_en": "Vấn đề (EN)",
+                "solution_vi": "Giải pháp (VI)",
+                "solution_en": "Giải pháp (EN)",
+                "features_vi": "Tính năng (VI)",
+                "features_en": "Tính năng (EN)",
+                "learned_vi": "Bài học (VI)",
+                "learned_en": "Bài học (EN)",
+                "tech_stack": "Công nghệ sử dụng",
+                "challenges": "Thách thức",
+                "challenges_desc": "Ghi lại các thách thức kỹ thuật.",
+                "tech_stack_desc": "Định nghĩa công nghệ và lý do chọn.",
+                "tech_name": "Tên công nghệ",
+                "reason_vi": "Lý do (VI)",
+                "reason_en": "Lý do (EN)",
+                "challenge_num": "Thách thức {index}"
+            },
+            "ai_success": "Đã tạo nội dung thành công",
+            "ai_error": "Lỗi khi tạo nội dung",
+            "translate_success": "Đã dịch nội dung thành công",
+            "translate_error": "Lỗi khi dịch nội dung",
+            "ai_generate": "AI Viết Dự án",
+            "translate_from_en": "Dịch từ Tiếng Anh",
+            "translate_from_vi": "Dịch từ Tiếng Việt",
+            "ai_dialog_title": "Tạo nội dung dự án",
+            "ai_dialog_desc": "Mô tả dự án của bạn (công nghệ, tính năng, vai trò) và AI sẽ điền vào form.",
+            "ai_placeholder": "Ví dụ: Một trang web thương mại điện tử sử dụng Next.js, Stripe và Tailwind...",
+            "ai_btn_generate": "Tạo",
+            "overwrite_alert_title": "Ghi đè nội dung?",
+            "overwrite_alert_desc": "Nội dung hiện tại sẽ bị ghi đè bởi bản dịch mới. Bạn có chắc chắn muốn tiếp tục?",
+            "confirm": "Có, ghi đè",
+            "cancel": "Hủy",
+            "create_success": "Đã tạo dự án thành công",
+            "create_error": "Lỗi khi tạo dự án",
+            "update_success": "Đã cập nhật dự án thành công",
+            "update_error": "Lỗi khi cập nhật dự án",
+            "slug_exists_error": "Slug đã tồn tại, vui lòng chọn slug khác",
+            "validation": {
+                "title_required": "Vui lòng nhập tiêu đề",
+                "slug_required": "Slug là bắt buộc",
+                "slug_exists_error": "Slug này đã tồn tại, vui lòng chọn slug khác",
+                "desc_required": "Vui lòng nhập mô tả",
+                "role_required": "Vui lòng nhập vai trò của bạn",
+                "overview_required": "Vui lòng nhập tổng quan",
+                "architecture_required": "Vui lòng nhập kiến trúc",
+                "start_date_required": "Ngày bắt đầu là bắt buộc",
+                "demo_url_invalid": "Link Demo không hợp lệ",
+                "repo_url_invalid": "Link Repo không hợp lệ",
+                "tech_stack_min": "Cần ít nhất 1 công nghệ",
+                "challenges_min": "Cần ít nhất 1 thách thức"
+            }
+        },
+        "HireMe": {
+            "title": "Quản lý Thuê tôi",
+            "description": "Xem và quản lý các tin nhắn từ khách hàng.",
+            "search_placeholder": "Tìm kiếm tin nhắn...",
+            "email_config": {
+                "title": "Email nhận thông báo",
+                "description": "Email này sẽ nhận thông báo khi có người gửi tin nhắn \"Hire Me\"",
+                "label": "Email",
+                "save_button": "Lưu"
+            },
+            "table": {
+                "date": "Ngày",
+                "name": "Tên",
+                "email": "Email",
+                "message": "Tin nhắn",
+                "actions": "Hành động"
+            },
+            "empty": "Chưa có tin nhắn nào từ khách hàng",
+            "view_detail": "Xem chi tiết",
+            "fetch_error": "Lỗi khi tải tin nhắn",
+            "delete_dialog": {
+                "title": "Xóa tin nhắn?",
+                "description": "Hành động này không thể hoàn tác. Tin nhắn sẽ bị xóa vĩnh viễn.",
+                "cancel": "Hủy",
+                "delete": "Xóa"
+            },
+            "delete_success": "Đã xóa tin nhắn",
+            "delete_error": "Lỗi khi xóa tin nhắn",
+            "toast": {
+                "delete_success": "Đã xóa tin nhắn",
+                "delete_error": "Lỗi khi xóa tin nhắn",
+                "save_email_success": "Đã lưu email nhận thông báo",
+                "save_email_error": "Lỗi khi lưu email"
+            },
+            "close": "Đóng"
+        },
+        "HireMeDetail": {
+            "title": "Chi tiết tin nhắn",
+            "back": "Quay lại",
+            "sender": "Người gửi",
+            "email": "Email",
+            "sent_at": "Gửi lúc",
+            "message": "Nội dung tin nhắn",
+            "reply_section": "Phản hồi",
+            "subject": "Tiêu đề",
+            "content": "Nội dung",
+            "ai_generate": "AI Soạn tin",
+            "send_email": "Gửi Email",
+            "ai_prompt_placeholder": "Gợi ý cho AI: (Ví dụ: Từ chối lịch sự, đồng ý phỏng vấn...)",
+            "subject_placeholder": "Re: [Tiêu đề tin nhắn]",
+            "generating": "Đang soạn thảo...",
+            "generated_success": "Đã soạn thảo nội dung phản hồi",
+            "generated_error": "Lỗi khi soạn thảo",
+            "copy_success": "Đã sao chép vào bộ nhớ tạm",
+            "delete_confirm": "Xóa tin nhắn này?",
+            "delete_desc": "Hành động này không thể hoàn tác."
+        }
+    }
+}

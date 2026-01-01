@@ -1,0 +1,489 @@
+{
+    "errors": {
+        "USER_EMAIL_EXISTS": "Email already exists",
+        "INVALID_PASSWORD": "Invalid password",
+        "UNKNOWN_ERROR": "An unknown error occurred",
+        "Internal Server Error": "Internal Server Error"
+    },
+    "HomePage": {
+        "title": "Home",
+        "Hero": {
+            "view_projects": "View Projects",
+            "headline": "Hey, I'm Duong",
+            "subheadline": "A Web Developer",
+            "desc1": "A Web developer with solid foundations in design.",
+            "desc2": "Passionate about crafting seamless user experiences with the intersection of creativity and functionality."
+        },
+        "About": {
+            "title": "Full Name",
+            "dob": "Date of Birth",
+            "education": "Education"
+        },
+        "Skills": {
+            "title": "Skills",
+            "subtitle": "Technologies I work with"
+        },
+        "Projects": {
+            "title": "Recent Projects",
+            "subtitle": "Some highlighted projects I have worked on",
+            "view_all": "View all projects",
+            "no_projects": "No Projects Found",
+            "check_back": "Please check back later.",
+            "search_placeholder": "Search projects...",
+            "all_projects": "All Projects",
+            "all_projects_desc": "A complete list of my work"
+        },
+        "RecentBlogs": {
+            "title": "Latest Blogs",
+            "subtitle": "Sharing knowledge and experiences",
+            "view_all": "View all blogs"
+        },
+        "ProjectDetail": {
+            "role": "Role",
+            "duration": "Duration",
+            "demo": "Demo",
+            "code": "Code",
+            "live_preview": "Live Preview",
+            "view_code": "View Code",
+            "problem": "Problem",
+            "solution": "Solution",
+            "main_features": "Main Features",
+            "tech_stack": "Tech Stack",
+            "architecture": "Architecture",
+            "challenges_decisions": "Challenges & Decisions",
+            "challenge": "Challenge",
+            "reason": "Reason",
+            "what_i_learned": "What I Learned",
+            "demo_account": "Demo Account",
+            "email": "Email",
+            "password": "Password",
+            "note": "Note"
+        }
+    },
+    "BlogsPage": {
+        "title": "Blog & Articles",
+        "description": "Sharing my thoughts and experiences in software development.",
+        "no_posts": "No posts found. Check back later!",
+        "no_posts_desc": "Please check back later.",
+        "no_thumbnail": "No Thumbnail",
+        "min_read": "{minutes} min read",
+        "search_placeholder": "Search articles..."
+    },
+    "Common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "success": "Success",
+        "cancel": "Cancel",
+        "save": "Save",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "demo_user_error": "This is a demo account, you do not have permission to perform this action",
+        "throttle_error": "You have performed this action too many times, please try again later"
+    },
+    "Navbar": {
+        "home": "Home",
+        "projects": "Projects",
+        "blogs": "Blogs",
+        "contact": "Contact",
+        "language": "Language",
+        "logo_fallback": "Duong",
+        "hire_me": {
+            "title": "Hire Me",
+            "name": "Your Name",
+            "email": "Your Email",
+            "message": "Your Message",
+            "send": "Send",
+            "success_message": "Message sent successfully! I'll get back to you soon.",
+            "error_message": "An error occurred. Please try again later.",
+            "rate_limit_error": "You've sent too many messages. Please wait 1 minute before sending again.",
+            "validation": {
+                "name_required": "Please enter your name",
+                "name_min": "Name must be at least 2 characters",
+                "email_invalid": "Invalid email address",
+                "message_required": "Please enter a message",
+                "message_min": "Message must be at least 10 characters",
+                "message_max": "Message must not exceed 1000 characters"
+            }
+        }
+    },
+    "Footer": {
+        "rights": "All rights reserved",
+        "portfolio": "Duong Portfolio"
+    },
+    "Profile": {
+        "save": "Save Changes",
+        "saving": "Saving...",
+        "add_tech": "Add Tech",
+        "upload_icon": "Icon URL",
+        "title": "Profile Settings",
+        "subtitle": "Manage your public profile information and hero section content.",
+        "sections": {
+            "hero": {
+                "title": "Hero Section",
+                "description": "Customize the main introduction on the home page.",
+                "headline": "Headline (H1)",
+                "subheadline": "Subheadline (H2)",
+                "desc1": "Description Paragraph 1",
+                "desc2": "Description Paragraph 2"
+            },
+            "personal": {
+                "title": "Personal Information",
+                "description": "Your personal details displayed in the \"About\" section.",
+                "fullname": "Full Name",
+                "birthdate": "Birth Date",
+                "education": "Education",
+                "avatar": "Avatar Image"
+            },
+            "social": {
+                "title": "Social Links",
+                "description": "Links to your social media profiles.",
+                "github": "GitHub URL",
+                "facebook": "Facebook URL",
+                "linkedin": "LinkedIn URL",
+                "email": "Email / Other URL"
+            },
+            "skills": {
+                "title": "Skills",
+                "description": "Manage your skills.",
+                "name": "Name",
+                "desc": "Description",
+                "empty": "No skills found.",
+                "add_group": "Add Group",
+                "edit_group": "Edit Group",
+                "add_skill": "Add Skill",
+                "edit_skill": "Edit Skill",
+                "view_skills": "View Skills",
+                "group_name": "Group Name",
+                "icon_url": "Icon URL"
+            },
+            "footer": {
+                "title": "Footer Management",
+                "description": "Customize footer content and contact links.",
+                "footer_title": "Footer Title",
+                "copyright_name": "Copyright Name",
+                "use_profile_contact": "Use Profile Contact Info",
+                "contact_email": "Contact Email",
+                "github": "Github URL",
+                "facebook": "Facebook URL",
+                "linkedin": "LinkedIn URL",
+                "contact_info_shared": "Contact Information (Shared)"
+            },
+            "navbar": {
+                "title": "Navbar Management",
+                "description": "Customize navbar name and Hire Me button.",
+                "navbar_name": "Navbar Name",
+                "navbar_name_desc": "The brand name displayed on the left side of the navbar.",
+                "hire_me_button": "Hire Me Button",
+                "hire_me_desc": "Configure the visibility and action of the Hire Me button.",
+                "show_hire_me": "Show 'Hire Me' Button",
+                "showHireMe": "Show 'Hire Me' Button"
+            },
+            "page_settings": {
+                "title": "Page Settings",
+                "description": "Configure global page settings like title and icon.",
+                "general_title": "General Settings",
+                "general_desc": "Set the browser tab title, metadata description, and fallback icon.",
+                "page_title": "Page Title",
+                "page_title_help": "Appears in the browser tab.",
+                "page_description": "Page Description",
+                "page_description_help": "Used for SEO and social sharing.",
+                "page_icon": "Page Icon (Favicon)",
+                "page_icon_help": "Upload a square image (e.g., .png, .ico)."
+            }
+        },
+        "toast": {
+            "update_success": "Profile updated successfully",
+            "uploading_image": "Uploading image...",
+            "image_uploaded": "Image uploaded",
+            "tech_added": "Tech stack added",
+            "tech_updated": "Tech stack updated",
+            "tech_deleted": "Tech stack deleted",
+            "deleting": "Deleting...",
+            "updating": "Updating...",
+            "adding": "Adding..."
+        }
+    },
+    "Sidebar": {
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "settings": "Settings",
+        "application": "Application",
+        "logout": "Logout",
+        "home": "Home",
+        "projects": "Projects",
+        "footer_management": "Footer Management",
+        "navbar_management": "Navbar Management"
+    },
+    "Login": {
+        "title": "Admin Login",
+        "description": "Enter your credentials to access the dashboard.",
+        "email_label": "Email",
+        "email_placeholder": "admin@example.com",
+        "password_label": "Password",
+        "password_placeholder": "••••••",
+        "submit_button": "Login",
+        "logging_in": "Logging in...",
+        "login_failed": "Login failed. Please check your credentials.",
+        "validation": {
+            "email_invalid": "Invalid email address.",
+            "password_min": "Password must be at least 6 characters."
+        },
+        "navbar_management": "Navbar Management"
+    },
+    "Admin": {
+        "Dashboard": {
+            "title": "Dashboard",
+            "total_projects": "Total Projects",
+            "total_blogs": "Total Blogs",
+            "total_views": "Total Views",
+            "hire_me_messages": "Hire Me Messages",
+            "from_last_month": "from last month"
+        },
+        "Blogs": {
+            "title": "Blog Management",
+            "description": "Create and manage your blog posts.",
+            "create_button": "Create Blog",
+            "all_blogs_title": "All Blogs",
+            "all_blogs_desc": "A list of all blogs including drafts and published posts.",
+            "table_headers": {
+                "title": "Title (VI)",
+                "slug": "Slug",
+                "status": "Status",
+                "views": "Views",
+                "created_at": "Created At",
+                "actions": "Actions"
+            },
+            "empty_state": "No blogs found. Create your first one!",
+            "empty_state_desc": "Start creating your first blog post",
+            "status": {
+                "published": "Published",
+                "draft": "Draft"
+            },
+            "delete_dialog": {
+                "title": "Are you sure?",
+                "description": "This action cannot be undone. This will permanently delete the blog post.",
+                "cancel": "Cancel",
+                "delete": "Delete"
+            },
+            "toast": {
+                "delete_success": "Deleted blog successfully",
+                "delete_error": "Failed to delete blog"
+            },
+            "search_placeholder": "Search blogs..."
+        },
+        "BlogEditor": {
+            "edit_title": "Edit Blog",
+            "create_title": "Create New Blog",
+            "back_button": "Back",
+            "save_button": "Save Blog",
+            "publish_button": "Publish",
+            "updating": "Updating...",
+            "creating": "Creating...",
+            "labels": {
+                "title_vi": "Title (VI)",
+                "title_en": "Title (EN)",
+                "slug": "Slug",
+                "slug_desc": "Unique identifier for the URL.",
+                "thumbnail": "Thumbnail Image",
+                "tags": "Tags",
+                "tags_placeholder": "Enter tag...",
+                "add_tag": "Add Tag",
+                "published": "Published",
+                "content_vi": "Content (VI)",
+                "content_en": "Content (EN)",
+                "upload_image": "Upload Image",
+                "remove_image": "Remove Image"
+            },
+            "toast": {
+                "create_success": "Blog created successfully",
+                "update_success": "Blog updated successfully",
+                "create_error": "Error creating blog",
+                "update_error": "Error updating blog",
+                "upload_error": "Error uploading image",
+                "slug_exists_error": "Slug already exists, please choose another one"
+            },
+            "validation": {
+                "title_required": "Title is required",
+                "slug_required": "Slug is required",
+                "content_required": "Content is required"
+            },
+            "ai": {
+                "generate_button": "Generate with AI",
+                "generating": "Generating...",
+                "translate_from_vi": "Translate from Vietnamese (AI)",
+                "translating": "Translating...",
+                "translate_from_en": "Translate from English (AI)",
+                "dialog_title": "Generate Blog with AI",
+                "dialog_desc": "Describe the blog post you want to create. AI will generate content for both Vietnamese and English.",
+                "prompt_placeholder": "E.g., Write a guide on how to use React Hooks...",
+                "success": "Content generated!",
+                "error": "Error generating content",
+                "overwrite_alert_title": "Overwrite content?",
+                "overwrite_alert_desc": "Current content will be overwritten by the new translation. Are you sure you want to continue?",
+                "confirm": "Yes, overwrite",
+                "cancel": "Cancel"
+            }
+        },
+        "Projects": {
+            "title": "Projects",
+            "description": "Manage your portfolio projects.",
+            "add_project": "Add Project",
+            "no_projects_title": "No projects created",
+            "no_projects_desc": "You haven't created any projects yet. Start by adding a new project to your portfolio.",
+            "delete_confirm_title": "Are you sure?",
+            "delete_confirm_desc": "This action cannot be undone. This will permanently delete the project \"{name}\".",
+            "cancel": "Cancel",
+            "delete": "Delete",
+            "search_placeholder": "Search projects..."
+        },
+        "ComposeProject": {
+            "edit_title": "Edit Project",
+            "create_title": "Create New Project",
+            "tabs": {
+                "basic": "Basic Info",
+                "details": "Details",
+                "arrays": "Content Arrays",
+                "complex": "Complex Data"
+            },
+            "buttons": {
+                "cancel": "Cancel",
+                "create": "Create Project",
+                "update": "Update Project",
+                "add_item": "Add Item",
+                "add_tech": "Add Tech Stack",
+                "add_challenge": "Add Challenge"
+            },
+            "labels": {
+                "slug": "Slug (Unique ID)",
+                "title_vi": "Title (VI)",
+                "title_en": "Title (EN)",
+                "desc_vi": "Description (VI)",
+                "desc_en": "Description (EN)",
+                "tags": "Tags",
+                "links_credentials": "Links & Credentials",
+                "demo_url": "Demo URL",
+                "repo_url": "Repo URL",
+                "api_url": "API URL",
+                "demo_email": "Demo Email",
+                "demo_password": "Demo Password",
+                "note_vi": "Note (VI)",
+                "note_en": "Note (EN)",
+                "detailed_info": "Detailed Information",
+                "role_vi": "Role (VI)",
+                "role_en": "Role (EN)",
+                "start_date": "Start Date",
+                "end_date": "End Date",
+                "overview_vi": "Overview (VI)",
+                "overview_en": "Overview (EN)",
+                "architecture_vi": "Architecture (VI)",
+                "architecture_en": "Architecture (EN)",
+                "problem_vi": "Problem (VI)",
+                "problem_en": "Problem (EN)",
+                "solution_vi": "Solution (VI)",
+                "solution_en": "Solution (EN)",
+                "features_vi": "Features (VI)",
+                "features_en": "Features (EN)",
+                "learned_vi": "Learned (VI)",
+                "learned_en": "Learned (EN)",
+                "tech_stack": "Tech Stack",
+                "challenges": "Challenges",
+                "challenges_desc": "Document technical challenges.",
+                "tech_stack_desc": "Define technologies and reasons.",
+                "tech_name": "Tech Name",
+                "reason_vi": "Reason (VI)",
+                "reason_en": "Reason (EN)",
+                "challenge_num": "Challenge {index}"
+            },
+            "ai_success": "Content generated successfully",
+            "ai_error": "Error generating content",
+            "translate_success": "Content translated successfully",
+            "translate_error": "Error translating content",
+            "ai_generate": "AI Generate Project",
+            "translate_from_en": "Translate from English",
+            "translate_from_vi": "Translate from Vietnamese",
+            "ai_dialog_title": "Generate Project Content",
+            "ai_dialog_desc": "Describe your project (tech stack, features, role) and AI will fill the form.",
+            "ai_placeholder": "E.g. An e-commerce website using Next.js, Stripe, and Tailwind...",
+            "ai_btn_generate": "Generate",
+            "overwrite_alert_title": "Overwrite content?",
+            "overwrite_alert_desc": "Current content will be overwritten by the new translation. Are you sure you want to continue?",
+            "confirm": "Yes, overwrite",
+            "cancel": "Cancel",
+            "create_success": "Project created successfully",
+            "create_error": "Failed to create project",
+            "update_success": "Project updated successfully",
+            "update_error": "Failed to update project",
+            "slug_exists_error": "Slug already exists, please choose another one",
+            "validation": {
+                "title_required": "Title is required",
+                "slug_required": "Slug is required",
+                "slug_exists_error": "Slug already exists",
+                "desc_required": "Description is required",
+                "role_required": "Role is required",
+                "overview_required": "Overview is required",
+                "architecture_required": "Architecture is required",
+                "start_date_required": "Start date is required",
+                "demo_url_invalid": "Invalid Demo URL",
+                "repo_url_invalid": "Invalid Repo URL",
+                "tech_stack_min": "At least 1 tech stack is required",
+                "challenges_min": "At least 1 challenge is required"
+            }
+        },
+        "HireMe": {
+            "title": "Hire Me Management",
+            "description": "View and manage messages from clients.",
+            "search_placeholder": "Search messages...",
+            "email_config": {
+                "title": "Notification Email",
+                "description": "This email will receive notifications when someone sends a \"Hire Me\" message",
+                "label": "Email",
+                "save_button": "Save"
+            },
+            "table": {
+                "name": "Name",
+                "email": "Email",
+                "message": "Message",
+                "date": "Date",
+                "actions": "Actions"
+            },
+            "empty": "No messages from clients yet",
+            "view_detail": "View Detail",
+            "fetch_error": "Error fetching messages",
+            "delete_dialog": {
+                "title": "Delete message?",
+                "description": "This action cannot be undone. The message will be permanently deleted.",
+                "cancel": "Cancel",
+                "delete": "Delete"
+            },
+            "toast": {
+                "delete_success": "Message deleted successfully",
+                "delete_error": "Failed to delete message",
+                "save_email_success": "Notification email saved",
+                "save_email_error": "Failed to save email"
+            },
+            "close": "Close"
+        },
+        "HireMeDetail": {
+            "title": "Message Detail",
+            "back": "Back",
+            "sender": "Sender",
+            "email": "Email",
+            "sent_at": "Sent At",
+            "message": "Message Content",
+            "reply_section": "Reply",
+            "subject": "Subject",
+            "content": "Content",
+            "ai_generate": "AI Draft Reply",
+            "send_email": "Send Email",
+            "ai_prompt_placeholder": "AI Hint: (e.g. Politely decline, agree to interview...)",
+            "subject_placeholder": "Re: [Message Subject]",
+            "generating": "Drafting...",
+            "generated_success": "Reply drafted successfully",
+            "generated_error": "Error drafting reply",
+            "copy_success": "Copied to clipboard",
+            "delete_confirm": "Delete this message?",
+            "delete_desc": "This action cannot be undone."
+        }
+    }
+}
