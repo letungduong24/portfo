@@ -20,6 +20,7 @@ services:
       retries: 5
 
   # NestJS API
+  # Exposed directly on port 4001 for Caddy reverse proxy
   api:
     build:
       context: ./api
@@ -27,6 +28,8 @@ services:
     image: ldngduong/portfolio-api:latest
     container_name: portfolio_api
     restart: unless-stopped
+    ports:
+      - "4001:3000"  # Expose NestJS on port 4001
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-portfolio}?schema=public
@@ -51,6 +54,7 @@ services:
       - portfolio_network
 
   # Next.js Web
+  # Exposed directly on port 4000 for Caddy reverse proxy
   web:
     build:
       context: ./web
@@ -58,29 +62,13 @@ services:
     image: ldngduong/portfolio-web:latest
     container_name: portfolio_web
     restart: unless-stopped
+    ports:
+      - "4000:3000"  # Expose Next.js on port 4000
     environment:
       NODE_ENV: production
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.duongle.site}
     depends_on:
       - api
-    networks:
-      - portfolio_network
-
-  # Nginx Reverse Proxy (internal routing)
-  # Exposes port 4000 for web and 4001 for api
-  # Caddy on VPS will forward to these ports
-  nginx:
-    image: nginx:alpine
-    container_name: portfolio_nginx
-    restart: unless-stopped
-    ports:
-      - "4000:80"  # Web traffic
-      - "4001:80"  # API traffic
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    depends_on:
-      - api
-      - web
     networks:
       - portfolio_network
 
