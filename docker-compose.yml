@@ -59,6 +59,8 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.duongle.site}
     image: ldngduong/portfolio-web:latest
     container_name: portfolio_web
     restart: unless-stopped
