@@ -1,51 +1,17 @@
-# Build stage
-FROM node:20-alpine AS builder
-
+FROM node:20-alpine AS base
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
-COPY prisma ./prisma/
-
-# Install dependencies
 RUN npm ci
 
-# Copy source code
 COPY . .
 
-# Generate Prisma Client
-RUN npx prisma generate
+ARG DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+ENV DATABASE_URL=$DATABASE_URL
 
-# Build the application
+# Generate Prisma client and build
+RUN npx prisma generate
 RUN npm run build
 
-# Production stage
-FROM node:20-alpine
-
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-COPY prisma ./prisma/
-
-# Install production dependencies only
-RUN npm ci --only=production
-
-# Copy Prisma schema and generate client
-RUN npx prisma generate
-
-# Copy built application from builder
-COPY --from=builder /app/dist ./dist
-
-# Create uploads directory
-RUN mkdir -p uploads
-
-# Copy entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
-
-# Expose port
-EXPOSE 8000
-
-# Use entrypoint script
-ENTRYPOINT ["docker-entrypoint.sh"]
+EXPOSE 3000
+CMD ["sh", "-c", "npx prisma migrate deploy && npm run seed && npm run start:prod"]
