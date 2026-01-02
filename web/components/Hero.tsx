@@ -85,7 +85,7 @@ export default function Hero() {
                         </div>
 
                         {/* Description */}
-                        <div className="max-w-2xl space-y-2 text-base text-muted-foreground md:text-lg">
+                        <div className="max-w-2xl text-base text-muted-foreground md:text-lg">
                             <p>{desc1}</p>
                             <p>{desc2}</p>
                         </div>
