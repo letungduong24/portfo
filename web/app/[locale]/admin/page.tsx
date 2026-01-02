@@ -40,23 +40,20 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
+import { ServicesManager } from "@/components/dashboard/services/ServicesManager"
 
 export default function ProfilePage() {
-    const { profile, fetchProfile, updatePersonalInfo, updateHero, updateEducation, updateSocialLinks, deleteSkillGroup, deleteSkill, isLoading, isUpdating } = useProfileStore()
+    const { profile, fetchProfile, updateHero, updateSocialLinks, deleteSkillGroup, deleteSkill, isLoading, isUpdating } = useProfileStore()
     const [formData, setFormData] = useState<any>({})
     const [deletedGroupIds, setDeletedGroupIds] = useState<number[]>([])
     const [deletedSkillIds, setDeletedSkillIds] = useState<number[]>([])
-    const [savingPersonal, setSavingPersonal] = useState(false)
     const [savingHero, setSavingHero] = useState(false)
-    const [savingEducation, setSavingEducation] = useState(false)
     const [savingSocial, setSavingSocial] = useState(false)
     const t = useTranslations('Profile');
     const tErrors = useTranslations('errors');
     const tCommon = useTranslations('Common');
 
-    useEffect(() => {
-        fetchProfile()
-    }, [fetchProfile])
+
 
     useEffect(() => {
         if (profile) {
@@ -71,28 +68,7 @@ export default function ProfilePage() {
         setFormData((prev: any) => ({ ...prev, [id]: value }))
     }
 
-    const handleSavePersonalInfo = async () => {
-        if (profile?.id) {
-            setSavingPersonal(true);
-            try {
-                await updatePersonalInfo(profile.id, {
-                    birthDate: formData.birthDate,
-                    avatarUrl: formData.avatarUrl,
-                });
-                toast.success(t('toast.update_success'));
-            } catch (err: any) {
-                if (err.translationKey) {
-                    const key = err.translationKey.replace('Common.', '');
-                    toast.error(tCommon(key));
-                } else if (!err.isHandled) {
-                    const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
-                    toast.error(tErrors(code));
-                }
-            } finally {
-                setSavingPersonal(false);
-            }
-        }
-    }
+
 
     const handleSaveHero = async () => {
         if (profile?.id) {
@@ -105,8 +81,6 @@ export default function ProfilePage() {
                     subheadlineEn: formData.subheadlineEn,
                     desc1Vi: formData.desc1Vi,
                     desc1En: formData.desc1En,
-                    desc2Vi: formData.desc2Vi,
-                    desc2En: formData.desc2En,
                 });
                 toast.success(t('toast.update_success'));
             } catch (err: any) {
@@ -123,30 +97,7 @@ export default function ProfilePage() {
         }
     }
 
-    const handleSaveEducation = async () => {
-        if (profile?.id) {
-            setSavingEducation(true);
-            try {
-                await updateEducation(profile.id, {
-                    fullNameVi: formData.fullNameVi,
-                    fullNameEn: formData.fullNameEn,
-                    educationVi: formData.educationVi,
-                    educationEn: formData.educationEn,
-                });
-                toast.success(t('toast.update_success'));
-            } catch (err: any) {
-                if (err.translationKey) {
-                    const key = err.translationKey.replace('Common.', '');
-                    toast.error(tCommon(key));
-                } else if (!err.isHandled) {
-                    const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
-                    toast.error(tErrors(code));
-                }
-            } finally {
-                setSavingEducation(false);
-            }
-        }
-    }
+
 
     const handleSaveSocialLinks = async () => {
         if (profile?.id) {
@@ -215,75 +166,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="space-y-6">
-                {/* Shared: Basic Info */}
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{t('sections.personal.title')}</CardTitle>
-                        <CardDescription>Thông tin cơ bản (Hiển thị chung)</CardDescription>
-                    </CardHeader>
-                    <CardContent className="grid gap-4 md:grid-cols-2">
-
-                        <div className="space-y-2">
-                            <Label htmlFor="birthDate">{t('sections.personal.birthdate')}</Label>
-                            <Input
-                                id="birthDate"
-                                type="date"
-                                value={formData.birthDate ? new Date(formData.birthDate).toISOString().split('T')[0] : ''}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="space-y-2 col-span-2">
-                            <Label>{t('sections.personal.avatar') || "Avatar Image"}</Label>
-                            <div className="flex items-center gap-4">
-                                {formData.avatarUrl && (
-                                    <div className="relative h-20 w-20 overflow-hidden rounded-full border">
-                                        <img
-                                            src={formData.avatarUrl}
-                                            alt="Avatar"
-                                            className="h-full w-full object-cover"
-                                        />
-                                    </div>
-                                )}
-                                <div className="flex-1">
-                                    <div className="relative">
-                                        <Input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={async (e) => {
-                                                const file = e.target.files?.[0];
-                                                if (file) {
-                                                    const { uploadImage } = useProfileStore.getState();
-                                                    const toastId = toast.loading(t('toast.uploading_image'));
-                                                    try {
-                                                        const url = await uploadImage(file);
-                                                        setFormData((prev: any) => ({ ...prev, avatarUrl: url }));
-                                                        toast.success(t('toast.image_uploaded'), { id: toastId });
-                                                    } catch (error: any) {
-                                                        toast.dismiss(toastId);
-                                                        if (error.translationKey) {
-                                                            const key = error.translationKey.replace('Common.', '');
-                                                            toast.error(tCommon(key));
-                                                        } else if (!error.isHandled) {
-                                                            toast.error("Upload failed");
-                                                        }
-                                                    }
-                                                }
-                                            }}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-span-2 flex justify-end pt-4">
-                            <Button onClick={handleSavePersonalInfo} disabled={savingPersonal}>
-                                {savingPersonal && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                {t('save')}
-                            </Button>
-                        </div>
-                    </CardContent>
-                </Card>
-
-                {/* Bilingual Sections via Tabs */}
+                {/* Hero Sections via Tabs */}
                 <Tabs defaultValue="vi" className="w-full">
                     <TabsList className="grid w-full grid-cols-2 max-w-[400px]">
                         <TabsTrigger value="vi">Tiếng Việt</TabsTrigger>
@@ -306,42 +189,13 @@ export default function ProfilePage() {
                                     <Label htmlFor="subheadlineVi">{t('sections.hero.subheadline')} (VI)</Label>
                                     <Input id="subheadlineVi" value={formData.subheadlineVi || ''} onChange={handleChange} />
                                 </div>
-                                <div className="grid gap-4 md:grid-cols-2">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="desc1Vi">{t('sections.hero.desc1')} (VI)</Label>
-                                        <Textarea id="desc1Vi" value={formData.desc1Vi || ''} onChange={handleChange} className="min-h-[100px]" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="desc2Vi">{t('sections.hero.desc2')} (VI)</Label>
-                                        <Textarea id="desc2Vi" value={formData.desc2Vi || ''} onChange={handleChange} className="min-h-[100px]" />
-                                    </div>
+                                <div className="space-y-2 col-span-2">
+                                    <Label htmlFor="desc1Vi">{t('sections.hero.desc1')} (VI)</Label>
+                                    <Textarea id="desc1Vi" value={formData.desc1Vi || ''} onChange={handleChange} className="min-h-[100px]" />
                                 </div>
                                 <div className="flex justify-end pt-4">
                                     <Button onClick={handleSaveHero} disabled={savingHero}>
                                         {savingHero && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        {t('save')}
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        {/* Education VI */}
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>{t('sections.personal.education')} (Tiếng Việt)</CardTitle>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="fullNameVi">{t('sections.personal.fullname')} (VI)</Label>
-                                    <Input id="fullNameVi" value={formData.fullNameVi || ''} onChange={handleChange} />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="educationVi">{t('sections.personal.education')} (VI)</Label>
-                                    <Input id="educationVi" value={formData.educationVi || ''} onChange={handleChange} />
-                                </div>
-                                <div className="flex justify-end pt-4">
-                                    <Button onClick={handleSaveEducation} disabled={savingEducation}>
-                                        {savingEducation && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                                         {t('save')}
                                     </Button>
                                 </div>
@@ -365,15 +219,9 @@ export default function ProfilePage() {
                                     <Label htmlFor="subheadlineEn">{t('sections.hero.subheadline')} (EN)</Label>
                                     <Input id="subheadlineEn" value={formData.subheadlineEn || ''} onChange={handleChange} />
                                 </div>
-                                <div className="grid gap-4 md:grid-cols-2">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="desc1En">{t('sections.hero.desc1')} (EN)</Label>
-                                        <Textarea id="desc1En" value={formData.desc1En || ''} onChange={handleChange} className="min-h-[100px]" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="desc2En">{t('sections.hero.desc2')} (EN)</Label>
-                                        <Textarea id="desc2En" value={formData.desc2En || ''} onChange={handleChange} className="min-h-[100px]" />
-                                    </div>
+                                <div className="space-y-2 col-span-2">
+                                    <Label htmlFor="desc1En">{t('sections.hero.desc1')} (EN)</Label>
+                                    <Textarea id="desc1En" value={formData.desc1En || ''} onChange={handleChange} className="min-h-[100px]" />
                                 </div>
                                 <div className="flex justify-end pt-4">
                                     <Button onClick={handleSaveHero} disabled={savingHero}>
@@ -383,31 +231,10 @@ export default function ProfilePage() {
                                 </div>
                             </CardContent>
                         </Card>
-
-                        {/* Education EN */}
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>{t('sections.personal.education')} (English)</CardTitle>
-                            </CardHeader>
-                            <CardContent className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="fullNameEn">{t('sections.personal.fullname')} (EN)</Label>
-                                    <Input id="fullNameEn" value={formData.fullNameEn || ''} onChange={handleChange} />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="educationEn">{t('sections.personal.education')}</Label>
-                                    <Input id="educationEn" value={formData.educationEn || ''} onChange={handleChange} />
-                                </div>
-                                <div className="flex justify-end pt-4">
-                                    <Button onClick={handleSaveEducation} disabled={savingEducation}>
-                                        {savingEducation && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        {t('save')}
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
                     </TabsContent>
                 </Tabs>
+
+                <ServicesManager />
 
                 {/* Social Links (Shared) */}
                 <Card>

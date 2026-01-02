@@ -60,9 +60,7 @@ export default function NavbarPage() {
         },
     })
 
-    useEffect(() => {
-        fetchProfile()
-    }, [fetchProfile])
+
 
     useEffect(() => {
         if (profile) {

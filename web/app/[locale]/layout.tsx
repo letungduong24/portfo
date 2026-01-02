@@ -1,22 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Onest } from "next/font/google";
 import "../globals.css"; // Fixed path
 import { ThemeProvider } from "@/components/theme-provider";
 import NavbarProvider from "@/components/NavbarProvider";
-import { BubbleBackground } from "@/components/bubble-background";
+
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Toaster } from "@/components/ui/sonner";
 import { AxiosErrorHandler } from "@/components/axios-error-handler";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const onest = Onest({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-onest",
 });
 
 import { getProfileForMetadata } from "@/lib/get-profile";
@@ -45,7 +40,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${onest.className} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
@@ -56,22 +51,10 @@ export default async function RootLayout({
             forcedTheme="dark"
           >
             <AxiosErrorHandler />
-            <BubbleBackground
-              className="w-full bg-zinc-900"
-              interactive={true}
-              colors={{
-                first: '80,80,80',
-                second: '90,90,90',
-                third: '100,100,100',
-                fourth: '120,120,120',
-                fifth: '70,70,70',
-                sixth: '80,80,80',
-              }}
-            >
-              <NavbarProvider>
-                {children}
-              </NavbarProvider>
-            </BubbleBackground>
+            <div className="fixed inset-0 -z-10 h-full w-full bg-black bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,#555555_0%,#1a1a1a_50%,#000000_100%)]"></div>
+            <NavbarProvider>
+              {children}
+            </NavbarProvider>
             <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>

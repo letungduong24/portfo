@@ -68,9 +68,7 @@ export default function FooterPage() {
         },
     })
 
-    useEffect(() => {
-        fetchProfile()
-    }, [fetchProfile])
+
 
     useEffect(() => {
         if (profile) {

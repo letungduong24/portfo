@@ -1,44 +1,46 @@
 "use client";
 
-import { Calendar, GraduationCap, User } from "lucide-react";
+import { Palette, Smartphone, Layout, Code, Monitor, Server, Database, Globe, Briefcase, Search, PenTool } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useProfileStore } from "@/store/use-profile-store";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 
+// Map icon strings to Lucide components
+const IconMap: { [key: string]: any } = {
+    Palette,
+    Smartphone,
+    Layout,
+    Code,
+    Monitor,
+    Server,
+    Database,
+    Globe,
+    Briefcase,
+    Search,
+    PenTool
+};
+
 export default function About() {
     const { profile, isLoading } = useProfileStore();
-    const t = useTranslations('HomePage.About');
+    const services = profile?.services || [];
+    const t = useTranslations('HomePage.Services');
     const locale = useLocale();
-
-    const formatDate = (dateString: string | null | undefined) => {
-        if (!dateString) return "16/06/2004";
-        try {
-            const date = new Date(dateString);
-            return new Intl.DateTimeFormat('en-GB', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            }).format(date);
-        } catch (e) {
-            return dateString;
-        }
-    };
 
     if (isLoading) {
         return (
-            <section id="about" className="flex w-full justify-center">
-                <div className="container mx-auto max-w-5xl p-3 md:p-6">
-                    <div className="grid grid-cols-2 gap-4 rounded-2xl border border-border/20 bg-background/20 p-6 shadow-sm backdrop-blur-md md:grid-cols-4 md:gap-8">
-                        {Array.from({ length: 4 }).map((_, i) => (
-                            <div key={i} className="flex items-center gap-3">
-                                <Skeleton className="h-10 w-10 shrink-0 rounded-full" />
-                                <div className="flex flex-col gap-2 overflow-hidden w-full">
-                                    <Skeleton className="h-3 w-16" />
-                                    <Skeleton className="h-4 w-24" />
-                                </div>
-                            </div>
-                        ))}
+            <section className="flex w-full justify-center py-15">
+                <div className="max-w-5xl w-full p-6">
+                    <div className="space-y-8">
+                        <div className="space-y-2 text-center">
+                            <Skeleton className="h-8 w-48 mx-auto" />
+                            <Skeleton className="h-6 w-64 mx-auto" />
+                        </div>
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {[1, 2, 3].map((i) => (
+                                <Skeleton key={i} className="h-48 w-full rounded-xl" />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
@@ -46,52 +48,58 @@ export default function About() {
     }
 
     return (
-        <section id="about" className="flex w-full justify-center">
-            <div className="container mx-auto max-w-5xl p-3 md:p-6">
+        <section className="flex w-full justify-center py-15">
+            <div className="max-w-5xl w-full p-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
                     viewport={{ once: true }}
-                    className="grid grid-cols-2 gap-4 rounded-2xl border border-border/20 bg-background/20 p-6 shadow-sm backdrop-blur-md md:grid-cols-4 md:gap-8"
+                    transition={{ duration: 0.5 }}
+                    className="space-y-8"
                 >
-                    {/* Full Name */}
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                            <User className="h-5 w-5" />
-                        </div>
-                        <div className="flex flex-col overflow-hidden">
-                            <span className="text-xs text-muted-foreground truncate">{t('title')}</span>
-                            <span className="font-medium text-sm text-foreground truncate">
-                                {locale === 'en' ? profile?.fullNameEn : profile?.fullNameVi || "Le Tung Duong"}
-                            </span>
-                        </div>
+                    {/* Header */}
+                    <div className="space-y-2 text-center">
+                        <h2 className="text-3xl font-bold tracking-tighter text-white sm:text-4xl md:text-5xl">
+                            {t('headline')}
+                        </h2>
                     </div>
 
-                    {/* Date of Birth */}
-                    <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                            <Calendar className="h-5 w-5" />
-                        </div>
-                        <div className="flex flex-col overflow-hidden">
-                            <span className="text-xs text-muted-foreground truncate">{t('dob')}</span>
-                            <span className="font-medium text-sm text-foreground truncate">
-                                {formatDate(profile?.birthDate)}
-                            </span>
-                        </div>
-                    </div>
+                    {/* Services Grid - Using flex-wrap like Skills and Projects */}
+                    <div className="flex flex-wrap gap-6">
+                        {services.map((service, index) => {
+                            const IconComponent = IconMap[service.icon] || Code;
+                            const title = locale === 'en' ? service.titleEn : service.titleVi;
+                            const description = locale === 'en' ? service.descriptionEn : service.descriptionVi;
 
-                    {/* Education */}
-                    <div className="col-span-2 flex items-center gap-3 md:col-span-2">
-                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                            <GraduationCap className="h-5 w-5" />
-                        </div>
-                        <div className="flex flex-col overflow-hidden">
-                            <span className="text-xs text-muted-foreground truncate">{t('education')}</span>
-                            <span className="font-medium text-sm text-foreground truncate">
-                                {locale === 'en' ? profile?.educationEn : profile?.educationVi || "Thuy Loi University - Software Engineering"}
-                            </span>
-                        </div>
+                            return (
+                                <motion.div
+                                    key={service.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 flex-1 min-w-[280px]"
+                                >
+                                    {/* Icon */}
+                                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
+                                        <IconComponent className="h-6 w-6" />
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="space-y-2">
+                                        <h3 className="text-xl font-semibold text-white">
+                                            {title}
+                                        </h3>
+                                        <p className="text-sm text-white/70 leading-relaxed">
+                                            {description}
+                                        </p>
+                                    </div>
+
+                                    {/* Hover effect */}
+                                    <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </motion.div>
             </div>

@@ -25,11 +25,7 @@ export default function PageSettings() {
         pageIcon: "",
     })
 
-    useEffect(() => {
-        if (!profile) {
-            fetchProfile()
-        }
-    }, [profile, fetchProfile])
+
 
     useEffect(() => {
         if (profile) {

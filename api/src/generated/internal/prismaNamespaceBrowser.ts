@@ -57,7 +57,8 @@ export const ModelName = {
   Skill: 'Skill',
   Project: 'Project',
   Blog: 'Blog',
-  HireMeMessage: 'HireMeMessage'
+  HireMeMessage: 'HireMeMessage',
+  Service: 'Service'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -227,6 +228,21 @@ export const HireMeMessageScalarFieldEnum = {
 } as const
 
 export type HireMeMessageScalarFieldEnum = (typeof HireMeMessageScalarFieldEnum)[keyof typeof HireMeMessageScalarFieldEnum]
+
+
+export const ServiceScalarFieldEnum = {
+  id: 'id',
+  titleVi: 'titleVi',
+  titleEn: 'titleEn',
+  descriptionVi: 'descriptionVi',
+  descriptionEn: 'descriptionEn',
+  icon: 'icon',
+  order: 'order',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ServiceScalarFieldEnum = (typeof ServiceScalarFieldEnum)[keyof typeof ServiceScalarFieldEnum]
 
 
 export const SortOrder = {

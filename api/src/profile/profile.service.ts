@@ -25,7 +25,7 @@ export class ProfileService {
     return this.prisma.profile.findMany();
   }
 
-  async findFirst() {
+  async findFirst(includeServices = false) {
     const profile = await this.prisma.profile.findFirst({
       include: {
         skillGroups: {
@@ -186,6 +186,14 @@ export class ProfileService {
           }
         },
       });
+    }
+
+    // If includeServices is true, fetch services and attach to profile
+    if (includeServices) {
+      const services = await this.prisma.service.findMany({
+        orderBy: { order: 'asc' }
+      });
+      return { ...profile, services };
     }
 
     return profile;

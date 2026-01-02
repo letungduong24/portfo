@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { Public } from './public.decorator';
+import { SkipThrottle } from '@nestjs/throttler';
 import type { Response } from 'express';
 
 @Controller('auth')
@@ -18,11 +19,12 @@ export class AuthController {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'strict',
-            maxAge: 3600 * 1000, // 1 hour
+            maxAge: 3600 * 1000, // 1 hour,
         });
         return { message: 'Logged in successfully' };
     }
 
+    @SkipThrottle()
     @UseGuards(JwtAuthGuard)
     @Get('profile') // To verify auth works
     getProfile(@Request() req) {

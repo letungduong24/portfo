@@ -72,3 +72,8 @@ export type Blog = Prisma.BlogModel
  * 
  */
 export type HireMeMessage = Prisma.HireMeMessageModel
+/**
+ * Model Service
+ * 
+ */
+export type Service = Prisma.ServiceModel

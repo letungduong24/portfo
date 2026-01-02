@@ -16,11 +16,15 @@ export default function NavbarProvider({ children }: NavbarProviderProps) {
     // Check if path contains /admin (handling /en/admin, /vi/admin)
     const isAdmin = pathname.includes('/admin');
 
-    const { fetchProfile, profile } = useProfileStore();
+    const { fetchProfile } = useProfileStore();
 
+    // Fetch profile only once when component mounts (for public pages)
     useEffect(() => {
-        fetchProfile();
-    }, [fetchProfile]);
+        if (!isAdmin) {
+            fetchProfile();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (isAdmin) {
         return <>{children}</>;

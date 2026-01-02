@@ -105,13 +105,13 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed top-4 left-1/2 z-50 w-[95%] max-w-5xl -translate-x-1/2 mx-3 md:mx-6">
-                <div className="relative overflow-hidden rounded-2xl border border-border bg-background/40 shadow-2xl backdrop-blur-md">
+            <nav className="fixed top-4 left-1/2 z-50 w-full max-w-5xl -translate-x-1/2 px-3 md:px-6">
+                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-2xl">
                     <div className="px-6 py-4">
                         <div className="flex items-center justify-between">
                             <Link
                                 href="/"
-                                className="text-xl font-bold text-foreground transition-colors hover:text-foreground/80"
+                                className="text-xl font-bold text-white transition-colors hover:text-white/80"
                             >
                                 Duong
                             </Link>
@@ -121,7 +121,7 @@ export default function Navbar() {
                                     <Link
                                         key={link.href}
                                         href={link.href}
-                                        className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                                        className="text-sm font-medium text-white/70 transition-colors hover:text-white"
                                     >
                                         {link.label}
                                     </Link>
@@ -178,7 +178,7 @@ export default function Navbar() {
                     <DialogHeader>
                         <DialogTitle>{hireMeLabel}</DialogTitle>
                         <DialogDescription>
-                            Gửi tin nhắn cho tôi và tôi sẽ phản hồi sớm nhất có thể.
+                            {t('hire_me.description')}
                         </DialogDescription>
                     </DialogHeader>
                     <Form {...form}>

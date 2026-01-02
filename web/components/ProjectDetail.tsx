@@ -15,15 +15,15 @@ interface ProjectDetailProps {
 }
 
 export default function ProjectDetail({ slug }: ProjectDetailProps) {
-    const { isLoading: isProfileLoading, fetchProfile, profile } = useProfileStore();
+    const { isLoading: isProfileLoading, profile } = useProfileStore();
     const { selectedProject: project, fetchProjectBySlug, isLoading: isProjectLoading } = useProjectStore();
     const t = useTranslations('HomePage.ProjectDetail');
     const locale = useLocale();
 
     useEffect(() => {
-        if (!profile) fetchProfile();
         fetchProjectBySlug(slug);
-    }, [fetchProfile, fetchProjectBySlug, profile, slug]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [slug]);
 
     const isLoading = isProfileLoading || isProjectLoading;
 
@@ -120,19 +120,19 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                         {project.tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="rounded-full bg-foreground/10 px-3 py-1 text-xs font-medium text-foreground"
+                                className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white"
                             >
                                 {tag}
                             </span>
                         ))}
                     </div>
 
-                    <h1 className="mb-4 text-4xl font-bold text-foreground md:text-5xl">
+                    <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl">
                         {title}
                     </h1>
 
                     {project.thumbnailUrl && (
-                        <div className="relative w-full h-64 md:h-96 rounded-lg overflow-hidden mb-8">
+                        <div className="relative w-full h-64 md:h-96 rounded-2xl overflow-hidden mb-8 shadow-2xl">
                             <NextImage
                                 src={project.thumbnailUrl}
                                 alt={title}
@@ -142,25 +142,25 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                         </div>
                     )}
 
-                    <p className="mb-8 text-xl text-muted-foreground">{overview}</p>
+                    <p className="mb-8 text-xl text-white/70">{overview}</p>
 
                     <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
                         <div>
-                            <span className="block text-muted-foreground">{t('role')}</span>
-                            <span className="font-medium text-foreground">{role}</span>
+                            <span className="block text-white/50">{t('role')}</span>
+                            <span className="font-medium text-white">{role}</span>
                         </div>
                         {duration && <div>
-                            <span className="block text-muted-foreground">{t('duration')}</span>
-                            <span className="font-medium text-foreground">{duration}</span>
+                            <span className="block text-white/50">{t('duration')}</span>
+                            <span className="font-medium text-white">{duration}</span>
                         </div>}
                         {project.links.demo && (
                             <div>
-                                <span className="block text-muted-foreground mb-1">{t('demo')}</span>
+                                <span className="block text-white/50 mb-1">{t('demo')}</span>
                                 <a
                                     href={project.links.demo}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1.5 font-medium text-foreground hover:underline"
+                                    className="inline-flex items-center gap-1.5 font-medium text-white hover:underline"
                                 >
                                     {t('live_preview')} <ExternalLink className="h-3 w-3" />
                                 </a>
@@ -168,12 +168,12 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                         )}
                         {project.links.repo && (
                             <div>
-                                <span className="block text-muted-foreground mb-1">{t('code')}</span>
+                                <span className="block text-white/50 mb-1">{t('code')}</span>
                                 <a
                                     href={project.links.repo}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-1.5 font-medium text-foreground hover:underline"
+                                    className="inline-flex items-center gap-1.5 font-medium text-white hover:underline"
                                 >
                                     {t('view_code')} <Github className="h-3 w-3" />
                                 </a>
@@ -192,11 +192,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                 >
                     {/* Problem */}
                     {problem.length > 0 && <motion.section variants={itemVariants}>
-                        <h2 className="mb-6 text-2xl font-bold text-foreground">{t('problem')}</h2>
+                        <h2 className="mb-6 text-2xl font-bold text-white">{t('problem')}</h2>
                         <ul className="space-y-3">
                             {problem.map((item, idx) => (
-                                <li key={idx} className="flex gap-3 text-muted-foreground">
-                                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
+                                <li key={idx} className="flex gap-3 text-white/70">
+                                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
                                     <span>{item}</span>
                                 </li>
                             ))}
@@ -205,11 +205,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                     {/* Solution */}
                     {solution.length > 0 && <motion.section variants={itemVariants}>
-                        <h2 className="mb-6 text-2xl font-bold text-foreground">{t('solution')}</h2>
+                        <h2 className="mb-6 text-2xl font-bold text-white">{t('solution')}</h2>
                         <ul className="space-y-3">
                             {solution.map((item, idx) => (
-                                <li key={idx} className="flex gap-3 text-muted-foreground">
-                                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
+                                <li key={idx} className="flex gap-3 text-white/70">
+                                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
                                     <span>{item}</span>
                                 </li>
                             ))}
@@ -218,11 +218,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                     {/* Main Features */}
                     {features.length > 0 && <motion.section variants={itemVariants}>
-                        <h2 className="mb-6 text-2xl font-bold text-foreground">{t('main_features')}</h2>
+                        <h2 className="mb-6 text-2xl font-bold text-white">{t('main_features')}</h2>
                         <div className="grid gap-3 sm:grid-cols-2">
                             {features.map((feature, idx) => (
-                                <div key={idx} className="flex items-center gap-3 rounded-lg border border-white/20 bg-card/40 p-3 text-sm text-foreground">
-                                    <CheckCircle2 className="h-4 w-4 text-foreground" />
+                                <div key={idx} className="flex items-center gap-3 rounded-lg border border-white/20 bg-white/5 p-3 text-sm text-white">
+                                    <CheckCircle2 className="h-4 w-4 text-white" />
                                     {feature}
                                 </div>
                             ))}
@@ -231,14 +231,14 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                     {/* Tech Stack */}
                     {techStack.length > 0 && <motion.section variants={itemVariants}>
-                        <h2 className="mb-6 text-2xl font-bold text-foreground">{t('tech_stack')}</h2>
+                        <h2 className="mb-6 text-2xl font-bold text-white">{t('tech_stack')}</h2>
                         <div className="grid gap-4 sm:grid-cols-2">
                             {techStack.map((tech, idx) => (
-                                <div key={idx} className="rounded-lg border border-white/20 bg-card/40 p-4">
+                                <div key={idx} className="rounded-lg border border-white/20 bg-white/5 p-4">
                                     <div className="flex items-center justify-between mb-2">
-                                        <span className="font-semibold text-foreground">{tech.name}</span>
+                                        <span className="font-semibold text-white">{tech.name}</span>
                                     </div>
-                                    <p className="text-sm text-muted-foreground">{locale === 'vi' ? tech.reasonVi : tech.reasonEn}</p>
+                                    <p className="text-sm text-white/60">{locale === 'vi' ? tech.reasonVi : tech.reasonEn}</p>
                                 </div>
                             ))}
                         </div>
@@ -247,8 +247,8 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                     {/* Architecture */}
                     {architecture && (
                         <motion.section variants={itemVariants}>
-                            <h2 className="mb-6 text-2xl font-bold text-foreground">{t('architecture')}</h2>
-                            <div className="rounded-xl border border-white/20 bg-card/40 p-6 font-mono text-sm text-muted-foreground">
+                            <h2 className="mb-6 text-2xl font-bold text-white">{t('architecture')}</h2>
+                            <div className="rounded-xl border border-white/20 bg-white/5 p-6 font-mono text-sm text-white/70">
                                 {architecture}
                             </div>
                         </motion.section>
@@ -256,23 +256,23 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                     {/* Challenges */}
                     {challenges.length > 0 && <motion.section variants={itemVariants}>
-                        <h2 className="mb-6 text-2xl font-bold text-foreground">{t('challenges_decisions')}</h2>
+                        <h2 className="mb-6 text-2xl font-bold text-white">{t('challenges_decisions')}</h2>
                         <div className="space-y-6">
                             {challenges.map((challenge, idx) => (
-                                <div key={idx} className="rounded-xl border border-white/20 bg-card/40 p-6">
-                                    <h3 className="mb-2 font-semibold text-foreground">{t('challenge')} {idx + 1}</h3>
+                                <div key={idx} className="rounded-xl border border-white/20 bg-white/5 p-6">
+                                    <h3 className="mb-2 font-semibold text-white">{t('challenge')} {idx + 1}</h3>
                                     <div className="space-y-3">
                                         <div className="grid grid-cols-[80px_1fr] gap-4">
-                                            <span className="text-sm font-medium text-foreground">{t('problem')}</span>
-                                            <p className="text-sm text-muted-foreground">{locale === 'vi' ? challenge.problemVi : challenge.problemEn}</p>
+                                            <span className="text-sm font-medium text-white">{t('problem')}</span>
+                                            <p className="text-sm text-white/70">{locale === 'vi' ? challenge.problemVi : challenge.problemEn}</p>
                                         </div>
                                         <div className="grid grid-cols-[80px_1fr] gap-4">
-                                            <span className="text-sm font-medium text-foreground">{t('solution')}</span>
-                                            <p className="text-sm text-muted-foreground">{locale === 'vi' ? challenge.solutionVi : challenge.solutionEn}</p>
+                                            <span className="text-sm font-medium text-white">{t('solution')}</span>
+                                            <p className="text-sm text-white/70">{locale === 'vi' ? challenge.solutionVi : challenge.solutionEn}</p>
                                         </div>
                                         <div className="grid grid-cols-[80px_1fr] gap-4">
-                                            <span className="text-sm font-medium text-foreground">{t('reason')}</span>
-                                            <p className="text-sm text-muted-foreground">{locale === 'vi' ? challenge.reasonVi : challenge.reasonEn}</p>
+                                            <span className="text-sm font-medium text-white">{t('reason')}</span>
+                                            <p className="text-sm text-white/70">{locale === 'vi' ? challenge.reasonVi : challenge.reasonEn}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -282,11 +282,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                     {/* Learned */}
                     {learned.length > 0 && <motion.section variants={itemVariants}>
-                        <h2 className="mb-6 text-2xl font-bold text-foreground">{t('what_i_learned')}</h2>
+                        <h2 className="mb-6 text-2xl font-bold text-white">{t('what_i_learned')}</h2>
                         <ul className="space-y-3">
                             {learned.map((item, idx) => (
-                                <li key={idx} className="flex gap-3 text-muted-foreground">
-                                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" />
+                                <li key={idx} className="flex gap-3 text-white/70">
+                                    <div className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
                                     <span>{item}</span>
                                 </li>
                             ))}
@@ -294,10 +294,13 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                     </motion.section>}
 
                     {/* Demo Account & Bottom Links */}
-                    <motion.section variants={itemVariants} className="border-t border-white/20 pt-8">
+                    <motion.section
+                        variants={itemVariants}
+                        className={`pt-8 ${demoCredentials && (demoCredentials.email || demoCredentials.password) ? "border-t border-white/20" : ""}`}
+                    >
                         {demoCredentials && (demoCredentials.email || demoCredentials.password) && (
-                            <div className="mb-8 rounded-lg border border-white/20 bg-card/40 p-6">
-                                <h3 className="mb-4 text-lg font-semibold text-foreground">{t('demo_account')}</h3>
+                            <div className="mb-8 rounded-lg border border-white/20 bg-white/5 p-6">
+                                <h3 className="mb-4 text-lg font-semibold text-white">{t('demo_account')}</h3>
                                 <div className="grid gap-x-8 gap-y-2 sm:grid-cols-2 max-w-2xl">
                                     {demoCredentials.email && (
                                         <div>

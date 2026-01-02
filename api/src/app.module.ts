@@ -14,6 +14,7 @@ import { RolesGuard } from './auth/roles.guard';
 import { BlogsModule } from './blogs/blogs.module';
 import { HireMeModule } from './hire-me/hire-me.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { ServiceModule } from './service/service.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 
 @Module({
@@ -34,6 +35,7 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
     BlogsModule,
     HireMeModule,
     DashboardModule,
+    ServiceModule,
   ],
   providers: [
     {

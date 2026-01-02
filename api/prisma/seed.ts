@@ -151,7 +151,55 @@ async function main() {
         }
     }
 
-    console.log({ user, profile });
+    // Seed Services
+    const services = [
+        {
+            titleEn: "UI & UX Design",
+            titleVi: "Thiết kế UI & UX",
+            descriptionEn: "Designing interfaces that are intuitive, efficient, and enjoyable to use.",
+            descriptionVi: "Thiết kế giao diện trực quan, hiệu quả và mang lại trải nghiệm thú vị.",
+            icon: "Palette",
+            order: 1
+        },
+        {
+            titleEn: "Web & Mobile App",
+            titleVi: "Ứng dụng Web & Mobile",
+            descriptionEn: "Transforming ideas into exceptional web and mobile app experiences.",
+            descriptionVi: "Biến ý tưởng thành những trải nghiệm ứng dụng web và di động tuyệt vời.",
+            icon: "Smartphone",
+            order: 2
+        },
+        {
+            titleEn: "Design & Creative",
+            titleVi: "Thiết kế & Sáng tạo",
+            descriptionEn: "Crafting visually stunning designs that connect with your audience.",
+            descriptionVi: "Tạo ra những thiết kế ấn tượng trực quan, kết nối với khán giả của bạn.",
+            icon: "Layout",
+            order: 3
+        },
+        {
+            titleEn: "Development",
+            titleVi: "Phát triển Phần mềm",
+            descriptionEn: "Bringing your vision to life with the latest technology and design trends.",
+            descriptionVi: "Hiện thực hóa tầm nhìn của bạn với công nghệ và xu hướng thiết kế mới nhất.",
+            icon: "Code",
+            order: 4
+        }
+    ];
+
+    for (const service of services) {
+        const existingService = await prisma.service.findFirst({
+            where: { titleEn: service.titleEn }
+        });
+
+        if (!existingService) {
+            await prisma.service.create({
+                data: service
+            });
+        }
+    }
+
+    console.log('Seeding completed.');
 }
 
 main()

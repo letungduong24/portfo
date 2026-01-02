@@ -38,19 +38,19 @@ export default function BlogsList() {
                     transition={{ duration: 0.5 }}
                     className="mb-8 text-center"
                 >
-                    <h1 className="text-3xl font-bold text-foreground md:text-4xl">
+                    <h1 className="text-3xl font-bold text-white md:text-4xl">
                         {t('title')}
                     </h1>
-                    <p className="mt-3 text-muted-foreground">
+                    <p className="mt-3 text-white/70">
                         {t('description')}
                     </p>
 
                     {/* Search Input */}
                     <div className="mt-6 max-w-md mx-auto relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
                         <Input
                             placeholder={t('search_placeholder') || "Search blogs..."}
-                            className="pl-10"
+                            className="pl-10 bg-white/5 border-white/10 text-white placeholder:text-white/40 focus:bg-white/10 rounded-xl"
                             value={search}
                             onChange={(e) => handleSearch(e.target.value)}
                         />
@@ -60,20 +60,20 @@ export default function BlogsList() {
                 {isInitialLoading ? (
                     <div className="flex flex-wrap gap-6">
                         {Array.from({ length: 6 }).map((_, i) => (
-                            <div key={i} className="flex flex-col overflow-hidden rounded-2xl border border-border/20 bg-background/20 shadow-sm backdrop-blur-md flex-1 min-w-[280px]">
-                                <Skeleton className="h-48 w-full" />
+                            <div key={i} className="flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-2xl flex-1 min-w-[280px]">
+                                <Skeleton className="h-48 w-full bg-white/10" />
                                 <div className="flex flex-1 flex-col p-6 space-y-3">
-                                    <Skeleton className="h-6 w-3/4" />
-                                    <Skeleton className="h-4 w-full" />
-                                    <Skeleton className="h-4 w-2/3" />
+                                    <Skeleton className="h-6 w-3/4 bg-white/10" />
+                                    <Skeleton className="h-4 w-full bg-white/10" />
+                                    <Skeleton className="h-4 w-2/3 bg-white/10" />
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : blogs.length === 0 ? (
                     <div className="text-center py-20">
-                        <h2 className="text-xl font-semibold">{t('no_posts')}</h2>
-                        <p className="text-muted-foreground mt-2">{t('no_posts_desc')}</p>
+                        <h2 className="text-xl font-semibold text-white">{t('no_posts')}</h2>
+                        <p className="text-white/70 mt-2">{t('no_posts_desc')}</p>
                     </div>
                 ) : (
                     <div className="flex flex-wrap gap-6">
@@ -90,10 +90,10 @@ export default function BlogsList() {
                                     ref={index === blogs.length - 1 ? lastElementRef : null}
                                     key={blog.id}
                                     href={`/blogs/${blog.slug}`}
-                                    className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/20 bg-background/20 shadow-sm backdrop-blur-md transition-all hover:border-foreground/30 hover:shadow-lg flex-1 min-w-[280px]"
+                                    className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-2xl transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-xl flex-1 min-w-[280px]"
                                 >
                                     {/* Thumbnail */}
-                                    <div className="relative h-48 w-full shrink-0 overflow-hidden bg-muted/50">
+                                    <div className="relative h-48 w-full shrink-0 overflow-hidden bg-white/5">
                                         {blog.thumbnail ? (
                                             <Image
                                                 src={blog.thumbnail}
@@ -102,19 +102,19 @@ export default function BlogsList() {
                                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                                             />
                                         ) : (
-                                            <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-                                                <FileText className="h-12 w-12 opacity-20" />
+                                            <div className="flex h-full w-full items-center justify-center text-white/20">
+                                                <FileText className="h-12 w-12 opacity-50" />
                                             </div>
                                         )}
                                     </div>
 
                                     <div className="flex flex-1 flex-col p-6">
-                                        <div className="flex items-center gap-2 text-xs text-muted-foreground mb-3">
+                                        <div className="flex items-center gap-2 text-xs text-white/60 mb-3">
                                             <Calendar className="h-3 w-3" />
                                             <span>{date}</span>
                                         </div>
 
-                                        <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                                        <h3 className="text-xl font-semibold text-white group-hover:text-white/90 transition-colors mb-2 line-clamp-2">
                                             {title}
                                         </h3>
 
@@ -123,13 +123,13 @@ export default function BlogsList() {
                                                 <Badge
                                                     key={tag}
                                                     variant="secondary"
-                                                    className="rounded-full px-2.5 py-0.5 text-xs font-medium"
+                                                    className="rounded-full bg-white/10 text-white hover:bg-white/20 px-2.5 py-0.5 text-xs font-medium border-none"
                                                 >
                                                     {tag}
                                                 </Badge>
                                             ))}
                                             {blog.tags.length > 3 && (
-                                                <Badge variant="secondary" className="rounded-full px-2.5 py-0.5 text-xs font-medium">
+                                                <Badge variant="secondary" className="rounded-full bg-white/5 text-white/60 px-2.5 py-0.5 text-xs font-medium border-none">
                                                     +{blog.tags.length - 3}
                                                 </Badge>
                                             )}

@@ -47,6 +47,17 @@ export interface Profile {
     pageDescription: string | null;
     pageIcon: string | null;
     avatarUrl: string | null;
+
+    // Services (optional, included when fetched with ?include=services)
+    services?: Array<{
+        id: number;
+        titleVi: string;
+        titleEn: string;
+        descriptionVi: string;
+        descriptionEn: string;
+        icon: string;
+        order: number;
+    }>;
 }
 
 export interface SkillGroup {
@@ -114,14 +125,13 @@ export const useProfileStore = create<ProfileState>((set, get) => ({
     },
 
     fetchProfile: async () => {
-        if (get().profile) return; // Prevent re-fetching if data exists
         set({ isLoading: true, error: null });
         try {
-            const res = await api.get('/profile');
+            const res = await api.get('/profile?include=services');
             set({ profile: res.data });
         } catch (error) {
             console.error('Failed to fetch profile', error);
-            set({ error: 'Failed to fetch profile data' });
+            set({ error: 'Failed to fetch profile' });
         } finally {
             set({ isLoading: false });
         }

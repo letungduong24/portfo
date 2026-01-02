@@ -14,10 +14,9 @@
             "desc1": "A Web developer with solid foundations in design.",
             "desc2": "Passionate about crafting seamless user experiences with the intersection of creativity and functionality."
         },
-        "About": {
-            "title": "Full Name",
-            "dob": "Date of Birth",
-            "education": "Education"
+        "Services": {
+            "title": "Services",
+            "headline": "What I can do"
         },
         "Skills": {
             "title": "Skills",
@@ -90,6 +89,7 @@
         "logo_fallback": "Duong",
         "hire_me": {
             "title": "Hire Me",
+            "description": "Send me a message and I'll respond as soon as possible.",
             "name": "Your Name",
             "email": "Your Email",
             "message": "Your Message",
@@ -124,8 +124,7 @@
                 "description": "Customize the main introduction on the home page.",
                 "headline": "Headline (H1)",
                 "subheadline": "Subheadline (H2)",
-                "desc1": "Description Paragraph 1",
-                "desc2": "Description Paragraph 2"
+                "desc1": "Description Paragraph 1"
             },
             "personal": {
                 "title": "Personal Information",
@@ -463,6 +462,19 @@
                 "save_email_error": "Failed to save email"
             },
             "close": "Close"
+        },
+        "Services": {
+            "title": "Services Management",
+            "description": "Manage your 'What I can do' section services.",
+            "add_service": "Add Service",
+            "edit_service": "Edit Service",
+            "delete_confirm": "Are you sure? This action cannot be undone.",
+            "toast": {
+                "create_success": "Service created successfully",
+                "update_success": "Service updated successfully",
+                "delete_success": "Service deleted successfully",
+                "error": "An error occurred"
+            }
         },
         "HireMeDetail": {
             "title": "Message Detail",

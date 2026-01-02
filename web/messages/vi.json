@@ -14,10 +14,9 @@
             "desc1": "Lập trình viên Web với nền tảng thiết kế vững chắc.",
             "desc2": "Đam mê tạo ra trải nghiệm người dùng liền mạch với sự kết hợp giữa sáng tạo và chức năng."
         },
-        "About": {
-            "title": "Họ và tên",
-            "dob": "Ngày sinh",
-            "education": "Học vấn"
+        "Services": {
+            "title": "Dịch vụ",
+            "headline": "Tôi có thể làm gì"
         },
         "Skills": {
             "title": "Kỹ năng",
@@ -88,6 +87,7 @@
         "contact": "Liên hệ",
         "hire_me": {
             "title": "Làm việc với tôi",
+            "description": "Gửi tin nhắn cho tôi và tôi sẽ phản hồi sớm nhất có thể.",
             "name": "Tên của bạn",
             "email": "Email của bạn",
             "message": "Tin nhắn của bạn",
@@ -124,8 +124,7 @@
                 "description": "Tùy chỉnh phần giới thiệu chính trên trang chủ.",
                 "headline": "Tiêu đề chính (H1)",
                 "subheadline": "Tiêu đề phụ (H2)",
-                "desc1": "Đoạn mô tả 1",
-                "desc2": "Đoạn mô tả 2"
+                "desc1": "Đoạn mô tả 1"
             },
             "personal": {
                 "title": "Thông tin Cá nhân",
@@ -464,6 +463,19 @@
                 "save_email_error": "Lỗi khi lưu email"
             },
             "close": "Đóng"
+        },
+        "Services": {
+            "title": "Quản lý Dịch vụ",
+            "description": "Quản lý các dịch vụ trong phần 'Tôi có thể làm gì'.",
+            "add_service": "Thêm Dịch vụ",
+            "edit_service": "Sửa Dịch vụ",
+            "delete_confirm": "Bạn có chắc chắn không? Hành động này không thể hoàn tác.",
+            "toast": {
+                "create_success": "Đã tạo dịch vụ thành công",
+                "update_success": "Đã cập nhật dịch vụ thành công",
+                "delete_success": "Đã xóa dịch vụ thành công",
+                "error": "Đã xảy ra lỗi"
+            }
         },
         "HireMeDetail": {
             "title": "Chi tiết tin nhắn",

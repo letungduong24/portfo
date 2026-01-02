@@ -27,7 +27,7 @@ export default function RecentProjects() {
     if (isLoading && projects.length === 0) {
         return (
             <section id="projects" className="flex w-full justify-center">
-                <div className="container mx-auto max-w-5xl p-3 md:p-6 space-y-4">
+                <div className="container mx-auto max-w-5xl p-6 space-y-4">
                     <div className="text-center space-y-2 flex flex-col items-center">
                         <Skeleton className="h-10 w-48" />
                         <Skeleton className="h-5 w-64" />
@@ -61,7 +61,7 @@ export default function RecentProjects() {
 
     return (
         <section id="projects" className="flex w-full justify-center">
-            <div className="container mx-auto max-w-5xl p-3 md:p-6 space-y-4">
+            <div className="container mx-auto max-w-5xl p-6 space-y-4">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -92,7 +92,7 @@ export default function RecentProjects() {
                             <Link
                                 key={project.id}
                                 href={`/projects/${project.slug}`}
-                                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/20 bg-background/20 shadow-sm backdrop-blur-md transition-all hover:border-foreground/30 hover:shadow-lg flex-1 min-w-[280px]"
+                                className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-2xl transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-xl flex-1 min-w-[280px]"
                             >
                                 {/* Project Thumbnail */}
                                 <div className="relative h-48 w-full shrink-0 overflow-hidden bg-muted/50">

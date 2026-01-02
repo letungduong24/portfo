@@ -16,7 +16,7 @@ export default function Skills() {
     if (isLoading) {
         return (
             <section className="flex w-full justify-center">
-                <div className="container mx-auto max-w-5xl p-3 md:p-6 space-y-6">
+                <div className="container mx-auto max-w-5xl p-6 space-y-6">
                     <div className="text-center space-y-2 flex flex-col items-center">
                         <Skeleton className="h-10 w-48" />
                         <Skeleton className="h-5 w-64" />
@@ -43,7 +43,7 @@ export default function Skills() {
 
     return (
         <section className="flex w-full justify-center">
-            <div className="container mx-auto max-w-5xl p-3 md:p-6 space-y-6">
+            <div className="container mx-auto max-w-5xl p-6 space-y-6">
                 {/* Section Title */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ export default function Skills() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
                             viewport={{ once: true }}
-                            className="group rounded-xl border border-border/20 bg-background/20 p-5 md:p-6 backdrop-blur-md transition-all hover:border-foreground/30 hover:bg-background/30 hover:shadow-lg flex-1 min-w-[280px] flex flex-col"
+                            className="group rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 backdrop-blur-2xl transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-xl flex-1 min-w-[280px] flex flex-col"
                         >
                             {/* Group Header */}
                             <div className="flex items-center gap-3 mb-4">

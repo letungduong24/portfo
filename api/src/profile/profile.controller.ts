@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Body, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Patch, Body, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { ProfileService } from './profile.service';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { UpdatePersonalInfoDto } from './dto/update-personal-info.dto';
@@ -16,9 +16,10 @@ export class ProfileController {
   @SkipThrottle()
   @Get()
   @Public()
-  findFirst() {
+  findFirst(@Query('include') include?: string) {
     // Always return the first/main profile
-    return this.profileService.findFirst();
+    const includeServices = include === 'services';
+    return this.profileService.findFirst(includeServices);
   }
 
   @Roles('ADMIN')
