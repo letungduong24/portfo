@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "Project" ALTER COLUMN "roleEn" DROP DEFAULT,
-ALTER COLUMN "roleVi" DROP DEFAULT;

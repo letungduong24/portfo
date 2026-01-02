@@ -1,8 +1,8 @@
-FROM node:20-alpine AS base
+FROM node:lts-alpine3.23 AS base
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci
+RUN npm config set registry https://registry.npmmirror.com && npm ci
 
 COPY . .
 
@@ -13,5 +13,7 @@ ENV DATABASE_URL=$DATABASE_URL
 RUN npx prisma generate
 RUN npm run build
 
-EXPOSE 3000
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run seed && npm run start:prod"]
+EXPOSE 8000
+CMD ["sh", "-c", "npx prisma migrate deploy && npm run seed && node dist/src/main"]
+
+

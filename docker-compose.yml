@@ -29,7 +29,7 @@ services:
     container_name: portfolio_api
     restart: unless-stopped
     ports:
-      - "4001:3000"  # Expose NestJS on port 4001
+      - "4001:8000"  # Expose NestJS on port 4001 (maps to container port 8000)
     environment:
       NODE_ENV: production
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-portfolio}?schema=public
