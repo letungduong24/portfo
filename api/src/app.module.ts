@@ -22,7 +22,7 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
     ConfigModule.forRoot({ isGlobal: true }),
     ThrottlerModule.forRoot([{
       ttl: 60000,
-      limit: 5,
+      limit: 15,
     }]),
     PrismaModule,
     AuthModule,

@@ -66,18 +66,6 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
     const overview = locale === 'vi' ? project.overviewVi : project.overviewEn;
     const role = locale === 'vi' ? project.roleVi : project.roleEn;
 
-    // Format date range
-    const formatDate = (date: Date | string | null) => {
-        if (!date) return '';
-        const d = new Date(date);
-        return d.toLocaleDateString(locale, { year: 'numeric', month: 'short' });
-    };
-    const duration = project.startDate && project.endDate
-        ? `${formatDate(project.startDate)} - ${formatDate(project.endDate)}`
-        : project.startDate
-            ? `${formatDate(project.startDate)} - ${locale === 'vi' ? 'Hiện tại' : 'Present'}`
-            : '';
-
     const problem = locale === 'vi' ? project.problemVi : project.problemEn;
     const solution = locale === 'vi' ? project.solutionVi : project.solutionEn;
     const features = locale === 'vi' ? project.featuresVi : project.featuresEn;
@@ -108,7 +96,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
     return (
         <div className="min-h-screen w-full">
-            <div className="container mx-auto px-4 py-10 md:py-20 max-w-4xl">
+            <div className="container mx-auto px-6 py-10 md:px-4 md:py-20 max-w-4xl">
                 {/* Hero Section */}
                 <motion.header
                     initial={{ opacity: 0, y: 20 }}
@@ -144,15 +132,11 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
 
                     <p className="mb-8 text-xl text-white/70">{overview}</p>
 
-                    <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
+                    <div className="grid grid-cols-1 gap-4 text-sm md:grid-cols-3">
                         <div>
                             <span className="block text-white/50">{t('role')}</span>
                             <span className="font-medium text-white">{role}</span>
                         </div>
-                        {duration && <div>
-                            <span className="block text-white/50">{t('duration')}</span>
-                            <span className="font-medium text-white">{duration}</span>
-                        </div>}
                         {project.links.demo && (
                             <div>
                                 <span className="block text-white/50 mb-1">{t('demo')}</span>
@@ -324,7 +308,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                             </div>
                         )}
 
-                        <div className="flex gap-4">
+                        <div className="flex flex-col sm:flex-row gap-4">
                             {project.links.demo && (
                                 <Button asChild size="lg" className="w-full sm:w-auto">
                                     <a href={project.links.demo} target="_blank" rel="noopener noreferrer">
@@ -335,7 +319,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                             {project.links.repo && (
                                 <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
                                     <a href={project.links.repo} target="_blank" rel="noopener noreferrer">
-                                        <Github className="mr-2 h-4 w-4" /> View Code
+                                        <Github className="mr-2 h-4 w-4" /> Source Code
                                     </a>
                                 </Button>
                             )}
