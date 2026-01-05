@@ -10,6 +10,11 @@ export class SkillGroupsService {
     create(createSkillGroupDto: CreateSkillGroupDto) {
         return this.prisma.skillGroup.create({
             data: createSkillGroupDto,
+            include: {
+                skills: {
+                    orderBy: { order: 'asc' }
+                }
+            }
         });
     }
 
@@ -39,6 +44,11 @@ export class SkillGroupsService {
         return this.prisma.skillGroup.update({
             where: { id },
             data: updateSkillGroupDto,
+            include: {
+                skills: {
+                    orderBy: { order: 'asc' }
+                }
+            }
         });
     }
 

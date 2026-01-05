@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class CreateHireMeDto {
     @IsString()
@@ -11,5 +11,6 @@ export class CreateHireMeDto {
 
     @IsString()
     @IsNotEmpty()
+    @MinLength(5)
     message: string;
 }

@@ -46,7 +46,7 @@ export default function Navbar() {
         email: z.string().email({
             message: t('hire_me.validation.email_invalid'),
         }),
-        message: z.string().min(10, {
+        message: z.string().min(5, {
             message: t('hire_me.validation.message_min'),
         }).max(1000, {
             message: t('hire_me.validation.message_max'),
@@ -93,11 +93,7 @@ export default function Navbar() {
             form.reset();
         } catch (error: any) {
             console.error('Failed to send message:', error);
-            if (error?.response?.status === 429) {
-                toast.error(t('hire_me.rate_limit_error'));
-            } else {
-                toast.error(t('hire_me.error_message') || "Failed to send message");
-            }
+            // Error is already handled by AxiosErrorHandler - no need to show toast here
         } finally {
             setIsLoading(false);
         }
