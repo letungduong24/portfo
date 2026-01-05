@@ -28,19 +28,33 @@ export default function Hero() {
 
     if (isLoading) {
         return (
-            <section className="flex w-full justify-center">
-                <div className="max-w-5xl flex w-full flex-col items-center md:flex-row gap-8 p-6">
-                    <Skeleton className="size-50 rounded-full md:size-60 lg:size-70" />
-                    <div className="flex flex-col gap-4 w-full md:w-auto flex-1 items-center md:items-start">
-                        <Skeleton className="h-10 w-3/4 md:w-1/2" />
-                        <Skeleton className="h-8 w-1/2 md:w-1/3" />
-                        <div className="space-y-2 w-full max-w-2xl">
-                            <Skeleton className="h-4 w-full" />
-                            <Skeleton className="h-4 w-5/6" />
-                        </div>
-                        <div className="flex gap-4 mt-2">
-                            <Skeleton className="h-10 w-32" />
-                            <Skeleton className="h-10 w-32" />
+            <section className="flex w-full flex-col justify-center py-15">
+                <div className="container mx-auto p-6">
+                    <div className="flex flex-col items-center gap-8 text-center">
+                        <div className="flex flex-col items-center gap-4 max-w-3xl w-full">
+                            {/* Heading skeletons */}
+                            <div className="space-y-4 w-full">
+                                <Skeleton className="h-12 w-3/4 mx-auto sm:h-14 md:h-16 lg:h-20" />
+                                <Skeleton className="h-8 w-1/2 mx-auto sm:h-10 md:h-12" />
+                            </div>
+
+                            {/* Description skeleton */}
+                            <div className="space-y-2 w-full max-w-2xl">
+                                <Skeleton className="h-4 w-full md:h-5" />
+                                <Skeleton className="h-4 w-5/6 mx-auto md:h-5" />
+                            </div>
+
+                            {/* Buttons and social links skeleton */}
+                            <div className="flex flex-col gap-4 sm:flex-row sm:items-center mt-4">
+                                <Skeleton className="h-11 w-40 rounded-full" />
+                                <Skeleton className="h-8 w-px hidden sm:block" />
+                                <div className="flex gap-3">
+                                    <Skeleton className="size-9 rounded-full" />
+                                    <Skeleton className="size-9 rounded-full" />
+                                    <Skeleton className="size-9 rounded-full" />
+                                    <Skeleton className="size-9 rounded-full" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
