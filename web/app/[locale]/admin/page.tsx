@@ -21,7 +21,8 @@ import {
 } from "@/components/ui/tabs"
 import { useProfileStore } from "@/store/use-profile-store"
 import { toast } from "sonner"
-import { Loader2, Plus, Pencil, Trash2, Upload } from "lucide-react"
+import { Loader2, Plus, Pencil, Trash2, Upload, Briefcase } from "lucide-react"
+import * as LucideIcons from "lucide-react";
 import {
     Dialog,
     DialogContent,
@@ -304,9 +305,17 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
     const [groupFormData, setGroupFormData] = useState({ nameVi: "", nameEn: "", icon: "" });
     const [skillFormData, setSkillFormData] = useState({ nameVi: "", nameEn: "", descriptionVi: "", descriptionEn: "", skillGroupId: 0 });
     const [isUploading, setIsUploading] = useState(false);
+    const [iconMode, setIconMode] = useState<'upload' | 'lucide'>('upload');
     const t = useTranslations('Profile');
     const tErrors = useTranslations('errors');
     const tCommon = useTranslations('Common');
+
+    // Helper to render Lucide icon for preview
+    const renderLucideIcon = (iconName: string) => {
+        // @ts-ignore
+        const Icon = LucideIcons[iconName];
+        return Icon ? <Icon className="h-4 w-4" /> : <Briefcase className="h-4 w-4" />;
+    };
 
     const handleViewSkills = (group: any) => {
         setViewingGroup(group);
@@ -500,31 +509,55 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
                                 <DialogTitle>{editingGroup ? t('sections.skills.edit_group') : t('sections.skills.add_group')}</DialogTitle>
                             </DialogHeader>
                             <form onSubmit={handleSubmitGroup} className="space-y-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="group-icon">{t('upload_icon')}</Label>
-                                    <div className="flex gap-2">
-                                        <Input
-                                            id="group-icon"
-                                            value={groupFormData.icon}
-                                            onChange={(e) => setGroupFormData({ ...groupFormData, icon: e.target.value })}
-                                            placeholder="/logo/frontend.svg"
-                                            required
-                                        />
-                                        <div className="relative">
-                                            <input
-                                                type="file"
-                                                id="upload-group-icon"
-                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                                accept=".svg,image/svg+xml,image/*"
-                                                onChange={handleFileUpload}
-                                                disabled={isUpdating || isUploading}
+                                <Tabs defaultValue="upload" className="w-full" onValueChange={(v) => setIconMode(v as 'upload' | 'lucide')}>
+                                    <TabsList className="grid w-full grid-cols-2">
+                                        <TabsTrigger value="upload">Upload SVG</TabsTrigger>
+                                        <TabsTrigger value="lucide">Lucide Icon</TabsTrigger>
+                                    </TabsList>
+
+                                    <TabsContent value="upload" className="space-y-2 mt-4">
+                                        <Label htmlFor="group-icon">{t('upload_icon')}</Label>
+                                        <div className="flex gap-2">
+                                            <Input
+                                                id="group-icon"
+                                                value={groupFormData.icon}
+                                                onChange={(e) => setGroupFormData({ ...groupFormData, icon: e.target.value })}
+                                                placeholder="/logo/frontend.svg (optional)"
                                             />
-                                            <Button type="button" variant="outline" size="icon" disabled={isUpdating || isUploading}>
-                                                {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
-                                            </Button>
+                                            <div className="relative">
+                                                <input
+                                                    type="file"
+                                                    id="upload-group-icon"
+                                                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                                    accept=".svg,image/svg+xml,image/*"
+                                                    onChange={handleFileUpload}
+                                                    disabled={isUpdating || isUploading}
+                                                />
+                                                <Button type="button" variant="outline" size="icon" disabled={isUpdating || isUploading}>
+                                                    {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+                                                </Button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </TabsContent>
+
+                                    <TabsContent value="lucide" className="space-y-2 mt-4">
+                                        <Label htmlFor="group-icon-lucide">Lucide Icon Name</Label>
+                                        <div className="flex gap-2 items-center">
+                                            <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-muted">
+                                                {renderLucideIcon(groupFormData.icon)}
+                                            </div>
+                                            <Input
+                                                id="group-icon-lucide"
+                                                value={groupFormData.icon}
+                                                onChange={(e) => setGroupFormData({ ...groupFormData, icon: e.target.value })}
+                                                placeholder="e.g. Code, Database, Palette (optional)"
+                                            />
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">
+                                            Enter icon name from <a href="https://lucide.dev/icons" target="_blank" rel="noreferrer" className="underline">lucide.dev</a>
+                                        </p>
+                                    </TabsContent>
+                                </Tabs>
 
                                 <Tabs defaultValue="vi" className="w-full">
                                     <TabsList className="grid w-full grid-cols-2">
@@ -649,9 +682,6 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
                             onClick={() => handleViewSkills(group)}
                         >
                             <div className="flex items-center gap-3">
-                                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-muted">
-                                    <img src={group.icon} alt={group.nameVi} className="h-6 w-6 object-contain" onError={(e) => e.currentTarget.src = "https://placehold.co/32?text=?"} />
-                                </div>
                                 <div className="min-w-0 flex-1">
                                     <h4 className="truncate text-sm font-semibold">{group.nameVi}</h4>
                                     <p className="truncate text-xs text-muted-foreground">{group.skills?.length || 0} skills</p>

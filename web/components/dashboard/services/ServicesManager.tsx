@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2, Plus, Pencil, Trash2, Briefcase } from "lucide-react";
+import { Loader2, Plus, Pencil, Trash2, Briefcase, Upload } from "lucide-react";
 import {
     Dialog,
     DialogContent,
@@ -41,6 +41,7 @@ export function ServicesManager() {
     const [editingService, setEditingService] = useState<any | null>(null);
     const [deletingId, setDeletingId] = useState<number | null>(null);
     const [isSubmitLoading, setIsSubmitLoading] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
 
 
 
@@ -116,6 +117,25 @@ export function ServicesManager() {
         }
     };
 
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        setIsUploading(true);
+        const { uploadImage } = useProfileStore.getState();
+
+        try {
+            const url = await uploadImage(file);
+            setFormData(prev => ({ ...prev, icon: url }));
+            toast.success("Image uploaded successfully");
+        } catch (error) {
+            toast.error("Failed to upload image");
+        } finally {
+            setIsUploading(false);
+            e.target.value = '';
+        }
+    };
+
     // Helper to render icon dynamically for preview (optional)
     const renderIcon = (iconName: string) => {
         // @ts-ignore
@@ -144,12 +164,14 @@ export function ServicesManager() {
                         {services.map((service) => (
                             <div key={service.id} className="flex flex-col justify-between rounded-lg border p-4 shadow-sm hover:shadow-md transition-shadow">
                                 <div className="mb-4 space-y-2">
-                                    <div className="flex items-center gap-2">
-                                        <div className="flex h-8 w-8 items-center justify-center rounded-md border bg-primary/10 text-primary">
-                                            {renderIcon(service.icon)}
+                                    {service.icon && (
+                                        <div className="flex items-center gap-2">
+                                            <div className="flex h-8 w-8 items-center justify-center rounded-md border bg-primary/10 text-primary">
+                                                {renderIcon(service.icon)}
+                                            </div>
+                                            <span className="font-semibold text-sm">{service.icon}</span>
                                         </div>
-                                        <span className="font-semibold text-sm">{service.icon}</span>
-                                    </div>
+                                    )}
                                     <div className="space-y-1">
                                         <div>
                                             <span className="text-xs font-bold text-muted-foreground uppercase">Vietnamese</span>
@@ -186,25 +208,57 @@ export function ServicesManager() {
                         <DialogTitle>{editingService ? "Edit Service" : "Add Service"}</DialogTitle>
                     </DialogHeader>
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="icon">Icon Name (Lucide React)</Label>
-                            <div className="flex gap-2 items-center">
-                                <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-muted">
-                                    {renderIcon(formData.icon)}
+                        <Tabs defaultValue="lucide" className="w-full">
+                            <TabsList className="grid w-full grid-cols-2">
+                                <TabsTrigger value="lucide">Lucide Icon</TabsTrigger>
+                                <TabsTrigger value="upload">Upload Image</TabsTrigger>
+                            </TabsList>
+
+                            <TabsContent value="lucide" className="space-y-2 mt-4">
+                                <Label htmlFor="icon-lucide">Lucide Icon Name</Label>
+                                <div className="flex gap-2 items-center">
+                                    <div className="flex h-10 w-10 items-center justify-center rounded-md border bg-muted">
+                                        {renderIcon(formData.icon)}
+                                    </div>
+                                    <Input
+                                        id="icon-lucide"
+                                        value={formData.icon}
+                                        onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                                        placeholder="e.g. Palette, Code, Database... (optional)"
+                                        className="flex-1"
+                                    />
                                 </div>
-                                <Input
-                                    id="icon"
-                                    value={formData.icon}
-                                    onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
-                                    placeholder="e.g. Palette, Code, Database..."
-                                    required
-                                    className="flex-1"
-                                />
-                            </div>
-                            <p className="text-xs text-muted-foreground">
-                                Enter the exact name of the Lucide icon from <a href="https://lucide.dev/icons" target="_blank" rel="noreferrer" className="underline">lucide.dev</a>.
-                            </p>
-                        </div>
+                                <p className="text-xs text-muted-foreground">
+                                    Enter icon name from <a href="https://lucide.dev/icons" target="_blank" rel="noreferrer" className="underline">lucide.dev</a>
+                                </p>
+                            </TabsContent>
+
+                            <TabsContent value="upload" className="space-y-2 mt-4">
+                                <Label htmlFor="icon-upload">Upload Icon</Label>
+                                <div className="flex gap-2">
+                                    <Input
+                                        id="icon-upload"
+                                        value={formData.icon}
+                                        onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                                        placeholder="/uploads/icon.svg (optional)"
+                                        className="flex-1"
+                                    />
+                                    <div className="relative">
+                                        <input
+                                            type="file"
+                                            id="upload-service-icon"
+                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                            accept=".svg,image/svg+xml,image/*"
+                                            onChange={handleFileUpload}
+                                            disabled={isSubmitLoading || isUploading}
+                                        />
+                                        <Button type="button" variant="outline" size="icon" disabled={isSubmitLoading || isUploading}>
+                                            {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+                                        </Button>
+                                    </div>
+                                </div>
+                            </TabsContent>
+                        </Tabs>
 
                         <Tabs defaultValue="en" className="w-full">
                             <TabsList className="grid w-full grid-cols-2">

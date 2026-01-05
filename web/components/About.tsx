@@ -5,6 +5,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useProfileStore } from "@/store/use-profile-store";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
+import * as LucideIcons from "lucide-react";
+import Image from "next/image";
 
 // Map icon strings to Lucide components
 const IconMap: { [key: string]: any } = {
@@ -80,10 +82,12 @@ export default function About() {
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 flex-1 min-w-[280px]"
                                 >
-                                    {/* Icon */}
-                                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
-                                        <IconComponent className="h-6 w-6" />
-                                    </div>
+                                    {/* Icon - Only show if service has an icon */}
+                                    {service.icon && (
+                                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-white/10 text-white">
+                                            <IconComponent className="h-6 w-6" />
+                                        </div>
+                                    )}
 
                                     {/* Content */}
                                     <div className="space-y-2">
