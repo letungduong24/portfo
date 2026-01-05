@@ -51,7 +51,17 @@ export default async function RootLayout({
             forcedTheme="dark"
           >
             <AxiosErrorHandler />
-            <div className="fixed inset-0 -z-10 h-full w-full bg-black bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,#555555_0%,#1a1a1a_50%,#000000_100%)]"></div>
+            {/* Midnight Mist Background */}
+            <div
+              className="fixed inset-0 -z-10 h-full w-full bg-black"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at 50% 100%, rgba(70, 85, 110, 0.3) 0%, transparent 60%),
+                  radial-gradient(circle at 50% 100%, rgba(99, 102, 241, 0.25) 0%, transparent 70%),
+                  radial-gradient(circle at 50% 100%, rgba(181, 184, 208, 0.15) 0%, transparent 80%)
+                `,
+              }}
+            ></div>
             <NavbarProvider>
               {children}
             </NavbarProvider>
