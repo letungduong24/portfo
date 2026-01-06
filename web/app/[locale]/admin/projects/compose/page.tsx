@@ -56,7 +56,7 @@ const ArrayInputList = ({ control, name, label, placeholder, addItemText }: any)
     return (
         <div className="space-y-2">
             <Label>{label}</Label>
-            <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
+            <div className="space-y-2">
                 {fields.map((field, index) => (
                     <div key={field.id} className="flex gap-2">
                         <FormField
@@ -110,8 +110,6 @@ export default function ComposeProjectPage() {
         tags: z.array(z.string()),
         roleVi: z.string().optional(),
         roleEn: z.string().optional(),
-        startDate: z.string().optional().nullable(),
-        endDate: z.string().optional().nullable(),
         overviewVi: z.string().optional(),
         overviewEn: z.string().optional(),
         problemVi: z.array(z.string()),
@@ -162,8 +160,6 @@ export default function ComposeProjectPage() {
             tags: [],
             roleVi: "",
             roleEn: "",
-            startDate: "",
-            endDate: "",
             overviewVi: "",
             overviewEn: "",
             problemVi: [],
@@ -208,8 +204,6 @@ export default function ComposeProjectPage() {
             });
             reset({
                 ...selectedProject,
-                startDate: selectedProject.startDate ? new Date(selectedProject.startDate).toISOString().split('T')[0] : "",
-                endDate: selectedProject.endDate ? new Date(selectedProject.endDate).toISOString().split('T')[0] : "",
                 tags: selectedProject.tags || [],
                 problemVi: selectedProject.problemVi || [],
                 problemEn: selectedProject.problemEn || [],
@@ -229,11 +223,8 @@ export default function ComposeProjectPage() {
 
     const onSubmit = async (data: any) => {
         try {
-            // Convert date strings to ISO format for backend
             const payload = {
                 ...data,
-                startDate: data.startDate ? new Date(data.startDate).toISOString() : null,
-                endDate: data.endDate ? new Date(data.endDate).toISOString() : null,
             };
 
             if (projectId) {
@@ -521,39 +512,6 @@ export default function ComposeProjectPage() {
                                             Remove Image
                                         </Button>
                                     )}
-                                </div>
-                            </div>
-
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div className="space-y-2">
-                                    <Label>{t('labels.start_date')}</Label>
-                                    <FormField
-                                        control={control}
-                                        name="startDate"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormControl>
-                                                    <Input type="date" {...field} value={field.value || ''} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label>{t('labels.end_date')}</Label>
-                                    <FormField
-                                        control={control}
-                                        name="endDate"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <FormControl>
-                                                    <Input type="date" {...field} value={field.value || ''} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
                                 </div>
                             </div>
 
