@@ -90,8 +90,10 @@ export function ServicesManager() {
             toast.success("Service deleted successfully");
             setIsAlertOpen(false);
             setDeletingId(null);
-        } catch (error) {
-            toast.error("Failed to delete service");
+        } catch (error: any) {
+            if (!error.isHandled) {
+                toast.error("Failed to delete service");
+            }
         }
     };
 
@@ -110,8 +112,10 @@ export function ServicesManager() {
             setIsDialogOpen(false);
             setFormData(defaultFormData);
             setEditingService(null);
-        } catch (error) {
-            toast.error(editingService ? "Failed to update service" : "Failed to create service");
+        } catch (error: any) {
+            if (!error.isHandled) {
+                toast.error(editingService ? "Failed to update service" : "Failed to create service");
+            }
         } finally {
             setIsSubmitLoading(false);
         }
@@ -128,8 +132,10 @@ export function ServicesManager() {
             const url = await uploadImage(file);
             setFormData(prev => ({ ...prev, icon: url }));
             toast.success("Image uploaded successfully");
-        } catch (error) {
-            toast.error("Failed to upload image");
+        } catch (error: any) {
+            if (!error.isHandled) {
+                toast.error("Failed to upload image");
+            }
         } finally {
             setIsUploading(false);
             e.target.value = '';

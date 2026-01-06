@@ -85,10 +85,7 @@ export default function ProfilePage() {
                 });
                 toast.success(t('toast.update_success'));
             } catch (err: any) {
-                if (err.translationKey) {
-                    const key = err.translationKey.replace('Common.', '');
-                    toast.error(tCommon(key));
-                } else if (!err.isHandled) {
+                if (!err.isHandled) {
                     const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                     toast.error(tErrors(code));
                 }
@@ -112,10 +109,7 @@ export default function ProfilePage() {
                 });
                 toast.success(t('toast.update_success'));
             } catch (err: any) {
-                if (err.translationKey) {
-                    const key = err.translationKey.replace('Common.', '');
-                    toast.error(tCommon(key));
-                } else if (!err.isHandled) {
+                if (!err.isHandled) {
                     const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                     toast.error(tErrors(code));
                 }
@@ -345,10 +339,7 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
                 setDeleteGroupAlertOpen(false);
                 setDeletingGroupId(null);
             } catch (err: any) {
-                if (err.translationKey) {
-                    const key = err.translationKey.replace('Common.', '');
-                    toast.error(tCommon(key));
-                } else if (!err.isHandled) {
+                if (!err.isHandled) {
                     const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                     toast.error(tErrors(code));
                 }
@@ -370,10 +361,7 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
             setEditingGroup(null);
             setGroupFormData({ nameVi: "", nameEn: "", icon: "" });
         } catch (err: any) {
-            if (err.translationKey) {
-                const key = err.translationKey.replace('Common.', '');
-                toast.error(tCommon(key));
-            } else if (!err.isHandled) {
+            if (!err.isHandled) {
                 const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                 toast.error(tErrors(code));
             }
@@ -423,10 +411,7 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
                 setDeletingSkillId(null);
                 setDeletingSkillGroupId(null);
             } catch (err: any) {
-                if (err.translationKey) {
-                    const key = err.translationKey.replace('Common.', '');
-                    toast.error(tCommon(key));
-                } else if (!err.isHandled) {
+                if (!err.isHandled) {
                     const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                     toast.error(tErrors(code));
                 }
@@ -448,10 +433,7 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
             setEditingSkill(null);
             setSkillFormData({ nameVi: "", nameEn: "", descriptionVi: "", descriptionEn: "", skillGroupId: 0 });
         } catch (err: any) {
-            if (err.translationKey) {
-                const key = err.translationKey.replace('Common.', '');
-                toast.error(tCommon(key));
-            } else if (!err.isHandled) {
+            if (!err.isHandled) {
                 const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                 toast.error(tErrors(code));
             }
@@ -470,10 +452,7 @@ function TechStackManager({ formData, setFormData, onDeleteGroup, onDeleteSkill 
             setGroupFormData(prev => ({ ...prev, icon: url }));
             toast.success(t('toast.image_uploaded'));
         } catch (err: any) {
-            if (err.translationKey) {
-                const key = err.translationKey.replace('Common.', '');
-                toast.error(tCommon(key));
-            } else if (!err.isHandled) {
+            if (!err.isHandled) {
                 const code = err?.response?.data?.error?.code || 'UNKNOWN_ERROR';
                 toast.error(tErrors(code));
             }
