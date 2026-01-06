@@ -341,35 +341,93 @@ export default function ComposeProjectPage() {
         setIsGenerating(true);
         try {
             const currentValues = form.getValues();
-            // We want to translate the whole object or specific parts.
-            // For simplicity, let's send the whole relevant part or just the "other" language fields.
-            // But the prompt says "Translate... JSON object".
-            // Let's translate the *current* content to the *target* language.
+            const targetLanguage = targetLang === 'en' ? 'English' : 'Vietnamese';
+            const sourceFields: any = {};
 
-            // Strategy: Send the whole form values, ask to translate to targetLang.
-            // However, that might be too heavy. 
-            // Better: If target is 'en', take 'vi' fields and translate them to 'en' fields, and vice versa.
+            if (targetLang === 'en') {
+                if (currentValues.titleVi) sourceFields.titleEn = currentValues.titleVi;
+                if (currentValues.descriptionVi) sourceFields.descriptionEn = currentValues.descriptionVi;
+                if (currentValues.roleVi) sourceFields.roleEn = currentValues.roleVi;
+                if (currentValues.overviewVi) sourceFields.overviewEn = currentValues.overviewVi;
+                if (currentValues.architectureVi) sourceFields.architectureEn = currentValues.architectureVi;
+                if (currentValues.problemVi?.length) sourceFields.problemEn = currentValues.problemVi;
+                if (currentValues.solutionVi?.length) sourceFields.solutionEn = currentValues.solutionVi;
+                if (currentValues.featuresVi?.length) sourceFields.featuresEn = currentValues.featuresVi;
+                if (currentValues.learnedVi?.length) sourceFields.learnedEn = currentValues.learnedVi;
+                if (currentValues.demoCredentials?.noteVi) {
+                    sourceFields.demoCredentials = { ...currentValues.demoCredentials, noteEn: currentValues.demoCredentials.noteVi };
+                }
+                if (currentValues.techStack?.length) {
+                    sourceFields.techStack = currentValues.techStack.map((tech: any) => ({
+                        name: tech.name,
+                        reasonEn: tech.reasonVi || ''
+                    }));
+                }
+                if (currentValues.challenges?.length) {
+                    sourceFields.challenges = currentValues.challenges.map((ch: any) => ({
+                        problemEn: ch.problemVi || '', solutionEn: ch.solutionVi || '', reasonEn: ch.reasonVi || ''
+                    }));
+                }
+            } else {
+                if (currentValues.titleEn) sourceFields.titleVi = currentValues.titleEn;
+                if (currentValues.descriptionEn) sourceFields.descriptionVi = currentValues.descriptionEn;
+                if (currentValues.roleEn) sourceFields.roleVi = currentValues.roleEn;
+                if (currentValues.overviewEn) sourceFields.overviewVi = currentValues.overviewEn;
+                if (currentValues.architectureEn) sourceFields.architectureVi = currentValues.architectureEn;
+                if (currentValues.problemEn?.length) sourceFields.problemVi = currentValues.problemEn;
+                if (currentValues.solutionEn?.length) sourceFields.solutionVi = currentValues.solutionEn;
+                if (currentValues.featuresEn?.length) sourceFields.featuresVi = currentValues.featuresEn;
+                if (currentValues.learnedEn?.length) sourceFields.learnedVi = currentValues.learnedEn;
+                if (currentValues.demoCredentials?.noteEn) {
+                    sourceFields.demoCredentials = { ...currentValues.demoCredentials, noteVi: currentValues.demoCredentials.noteEn };
+                }
+                if (currentValues.techStack?.length) {
+                    sourceFields.techStack = currentValues.techStack.map((tech: any) => ({
+                        name: tech.name,
+                        reasonVi: tech.reasonEn || ''
+                    }));
+                }
+                if (currentValues.challenges?.length) {
+                    sourceFields.challenges = currentValues.challenges.map((ch: any) => ({
+                        problemVi: ch.problemEn || '', solutionVi: ch.solutionEn || '', reasonVi: ch.reasonEn || ''
+                    }));
+                }
+            }
 
-            // Actually the backend `translateCompose` takes text/json and returns translated text/json.
-            // Let's construct a partial object of source fields to translate.
-
-            const sourceLang = targetLang === 'en' ? 'vi' : 'en';
-
-            // This is complex because we have many fields. 
-            // Let's try sending the whole current form state and ask AI to "fill in the missing [target] fields based on [source] fields".
-            // Or just "Translate this JSON to [target]".
-
-            // Let's try a simpler approach for now: Translate specific fields? 
-            // No, user wants "automatic".
-
-            // Let's send the whole current form values.
             const res = await api.post('/ai/translate-compose', {
-                text: JSON.stringify(currentValues),
-                targetLanguage: targetLang === 'vi' ? 'Vietnamese' : 'English'
+                text: JSON.stringify(sourceFields),
+                targetLanguage
             });
 
             const translatedData = JSON.parse(res.data.translation);
-            reset({ ...currentValues, ...translatedData });
+
+            // Merge translated data carefully to preserve shared fields
+            const mergedData: any = { ...currentValues };
+
+            // Merge simple fields
+            Object.keys(translatedData).forEach(key => {
+                if (key !== 'techStack' && key !== 'challenges') {
+                    (mergedData as any)[key] = (translatedData as any)[key];
+                }
+            });
+
+            // Merge techStack - preserve name, only update reason fields
+            if (translatedData.techStack && currentValues.techStack) {
+                mergedData.techStack = currentValues.techStack.map((tech: any, index: number) => ({
+                    ...tech,
+                    ...((translatedData as any).techStack[index] || {})
+                }));
+            }
+
+            // Merge challenges - preserve all fields, only update translated ones
+            if ((translatedData as any).challenges && currentValues.challenges) {
+                mergedData.challenges = currentValues.challenges.map((ch: any, index: number) => ({
+                    ...ch,
+                    ...((translatedData as any).challenges[index] || {})
+                }));
+            }
+
+            reset(mergedData);
             toast.success(t('translate_success'));
         } catch (error: any) {
             console.error('Translation error:', error);
