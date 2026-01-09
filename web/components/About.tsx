@@ -67,19 +67,21 @@ export default function About() {
                     </div>
 
                     {/* Services Grid - Using flex-wrap like Skills and Projects */}
-                    <div className="flex flex-wrap gap-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        viewport={{ once: true }}
+                        className="flex flex-wrap gap-6"
+                    >
                         {services.map((service, index) => {
                             const IconComponent = IconMap[service.icon] || Code;
                             const title = locale === 'en' ? service.titleEn : service.titleVi;
                             const description = locale === 'en' ? service.descriptionEn : service.descriptionVi;
 
                             return (
-                                <motion.div
+                                <div
                                     key={service.id}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
                                     className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/10 flex-1 min-w-[280px]"
                                 >
                                     {/* Icon - Only show if service has an icon */}
@@ -101,10 +103,10 @@ export default function About() {
 
                                     {/* Hover effect */}
                                     <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-                                </motion.div>
+                                </div>
                             );
                         })}
-                    </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

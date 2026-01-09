@@ -232,7 +232,7 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                     {architecture && (
                         <motion.section variants={itemVariants}>
                             <h2 className="mb-6 text-2xl font-bold text-white">{t('architecture')}</h2>
-                            <div className="rounded-xl border border-white/20 bg-white/5 p-6 font-mono text-sm text-white/70">
+                            <div className="rounded-xl border border-white/20 bg-white/5 p-6 text-sm text-white/70 whitespace-pre-wrap">
                                 {architecture}
                             </div>
                         </motion.section>
@@ -289,13 +289,13 @@ export default function ProjectDetail({ slug }: ProjectDetailProps) {
                                     {demoCredentials.email && (
                                         <div>
                                             <span className="text-sm text-muted-foreground block">{t('email')}</span>
-                                            <code className="text-sm font-mono text-foreground">{demoCredentials.email}</code>
+                                            <code className="text-sm text-foreground">{demoCredentials.email}</code>
                                         </div>
                                     )}
                                     {demoCredentials.password && (
                                         <div>
                                             <span className="text-sm text-muted-foreground block">{t('password')}</span>
-                                            <code className="text-sm font-mono text-foreground">{demoCredentials.password}</code>
+                                            <code className="text-sm text-foreground">{demoCredentials.password}</code>
                                         </div>
                                     )}
                                     {demoNote && (

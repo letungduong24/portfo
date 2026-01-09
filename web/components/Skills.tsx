@@ -76,12 +76,8 @@ export default function Skills() {
                         const LucideIcon = !isUrl && group.icon ? LucideIcons[group.icon] : null;
 
                         return (
-                            <motion.div
+                            <div
                                 key={group.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
-                                viewport={{ once: true }}
                                 className="group rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 backdrop-blur-2xl transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-xl flex-1 min-w-[280px] flex flex-col"
                             >
                                 {/* Group Header */}
@@ -123,7 +119,7 @@ export default function Skills() {
                                         </div>
                                     ))}
                                 </div>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </motion.div>

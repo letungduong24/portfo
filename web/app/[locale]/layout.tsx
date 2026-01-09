@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Onest } from "next/font/google";
 import "../globals.css"; // Fixed path
 import { ThemeProvider } from "@/components/theme-provider";
 import NavbarProvider from "@/components/NavbarProvider";
@@ -8,11 +7,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { Toaster } from "@/components/ui/sonner";
 import { AxiosErrorHandler } from "@/components/axios-error-handler";
-
-const onest = Onest({
-  subsets: ["latin"],
-  variable: "--font-onest",
-});
 
 import { getProfileForMetadata } from "@/lib/get-profile";
 
@@ -40,7 +34,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${onest.className} antialiased`}
+        className="antialiased"
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
